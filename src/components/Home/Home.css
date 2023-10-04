@@ -1,0 +1,167 @@
+.navbar-item {
+  display: flex;
+}
+.list-item {
+  display: flex;
+  justify-content: center;
+}
+.auth-fun {
+  display: flex;
+  flex-direction: row;
+  justify-items: end;
+}
+.cat-image {
+  height: 30rem;
+  width: 30rem;
+  border-radius: 2rem;
+  margin-left: 4rem;
+}
+.info-part {
+  margin-top: 2rem;
+
+  display: flex;
+  gap: 2rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
+.right-div p {
+  margin-top: 0px;
+  font-size: 20px;
+  margin-right: 4rem;
+}
+.right-div h3 {
+  font-size: 2rem;
+  margin-top: 0px;
+}
+.page-3-main {
+  display: flex;
+}
+.header-div3 {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 2rem;
+}
+.right-image {
+  border-radius: 1.5rem;
+  margin-right: 3rem;
+  margin-top: 3rem;
+}
+.right-div {
+  margin-top: 2rem;
+}
+h3 {
+  font-size: 2rem;
+}
+p {
+  font-size: 1.2rem;
+}
+.leftDiv {
+  margin-left: 2rem;
+}
+
+/* css of home1 */
+.main-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4rem;
+  gap: 2rem;
+}
+.joining-link {
+  color: black;
+}
+
+@media (max-width: 1024px) {
+  .navbar-items {
+    width: 130%;
+  }
+  .main-div {
+    margin-left: 20rem;
+  }
+  .profile-body {
+    margin-left: 12rem;
+  }
+  .right-image {
+  }
+  .next-div {
+  }
+  .header-div3 {
+    margin-left: 10rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-items {
+    width: 78rem;
+  }
+  .cat-image {
+    width: 30rem;
+    margin-left: 20rem;
+  }
+  .main-div .heading {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 425px) {
+  .main-div {
+    height: 80vh;
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .header-part {
+    font-size: 1rem;
+  }
+  .cat-image {
+    width: 30rem;
+    margin-left: 40rem;
+  }
+  .nd-head {
+    width: 730px;
+  }
+  .header-div3 {
+    width: 730px;
+  }
+}
+.main-heading {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.card {
+  display: flex !important;
+  height: 10rem;
+  width: 12rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column !important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 16px;
+  text-align: center;
+  padding: 30px 10px 15px 10px;
+  position: relative;
+  cursor: pointer;
+}
+.services-cards {
+  display: flex !important;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+  padding: 20px;
+  justify-content: space-around;
+}
+.circle {
+  position: absolute;
+  font-size: 25px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 35px;
+  padding: 5px 10px 5px 10px;
+  top: -25px;
+  background-color: white;
+}
+.card:hover {
+  z-index: 2.5;
+  transform: scale(1.09);
+}
