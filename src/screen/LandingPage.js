@@ -4,6 +4,7 @@ import Home1 from "../components/Home/Home1";
 import Home2 from "../components/Home/Home2";
 import Home3 from "../components/Home/Home3";
 import Home4 from "../components/Home/Home4";
+import Footer from "../components/footer/Footer";
 
 const LandingPage = () => {
   const user = localStorage.getItem("user");
@@ -15,6 +16,7 @@ const LandingPage = () => {
       <Home4 />
       <Home2 />
       <Home3 />
+      <Footer />
     </>
   );
 };

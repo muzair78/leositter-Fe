@@ -272,7 +272,7 @@ const Caregiverform = () => {
             </Form.Item>
             <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
               <button className="submit-btn" onClick={fetchUser}>
-                Submit
+                Signup
               </button>
             </Form.Item>
           </Form>
