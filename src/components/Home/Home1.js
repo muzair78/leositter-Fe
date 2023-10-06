@@ -15,18 +15,18 @@ const Home1 = () => {
         className="mid-para"
         style={{ marginTop: "2rem", fontSize: "1.3rem" }}
       >
-        Over 1,000,000 people use PetSitter.com to keep their pets happy and
-        well on their days in the office or trips away
+        Over 1,000,000 people use LeoSitter to keep their pets happy and well on
+        their days in the office or trips away
       </div>
       <NavLink
         style={{ color: "black", fontSize: "1.2rem", marginTop: "2rem" }}
         to={"/apply-for-job"}
       >
-        Are you a pet sitter and looking for job?
+        Are you caregiver and looking for job?
       </NavLink>
       <NavLink to={"/joinnow/caregiver"}>
         {" "}
-        <button className="body-btn-info">Find a pet sitter now</button>
+        <button className="body-btn-info">Find a caregiver now</button>
       </NavLink>
     </div>
   );

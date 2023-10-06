@@ -5,6 +5,7 @@ import { Button, Checkbox, Form, Input } from "antd";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { MdKey } from "react-icons/md";
 
 const onFinish = (values) => {
   console.log("Success:", values);
@@ -65,8 +66,10 @@ const Signin = () => {
           localStorage.setItem("user", JSON.stringify(res.data.data.user));
         }
       })
-      .catch((error) => {
-        console.error("Error:", error);
+      .catch((response) => {
+        if (response.status === 409) {
+          console.log("wrong");
+        }
       });
   };
 
@@ -74,6 +77,7 @@ const Signin = () => {
     <>
       <div className="login-container">
         <div className="login-left"></div>
+
         <div className="login-form">
           <Form
             name="basic"
@@ -131,7 +135,7 @@ const Signin = () => {
                 className="btn"
                 onClick={fetchData}
               >
-                Submit
+                Signin
               </Button>
             </Form.Item>
           </Form>

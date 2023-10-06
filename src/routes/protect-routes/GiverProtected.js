@@ -5,7 +5,10 @@ function GiverProtected({ children }) {
   const user = JSON.parse(localStorage.getItem("user"));
 
   if (user) {
-    return <Navigate to="/care-taker" replace />;
+    const user = JSON.parse(localStorage.getItem("user")).role;
+    const redirectTo =
+      user === "caregiver" ? "/care-taker" : "/petsitter-profile"; // Set your condition here
+    return <Navigate to={redirectTo} replace />;
   }
 
   return children;

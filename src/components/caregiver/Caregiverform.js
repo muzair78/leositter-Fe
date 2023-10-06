@@ -134,7 +134,7 @@ const Caregiverform = () => {
                 color: " #ff7875",
               }}
             >
-              PetSitter Signup
+              Caregiver Signup
             </div>
           </div>
           <Form

@@ -7,7 +7,7 @@ const Footer = () => {
     <>
       <footer
         class="footer"
-        style={{ backgroundColor: "rgb(255,218,185)", marginTop: "3rem" }}
+        style={{ backgroundColor: "rgb(255,255,255)", marginTop: "3rem" }}
       >
         <div class="footer__addr">
           <h1 class="footer__logo" style={{ fontWeight: "bolder" }}>

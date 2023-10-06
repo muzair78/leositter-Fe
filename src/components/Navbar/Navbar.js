@@ -2,8 +2,8 @@ import { React } from "react";
 import "../Home/Home.css";
 import { FaCat } from "react-icons/fa";
 import "./Navbar.css";
-import { NavLink, Navigate, useNavigate } from "react-router-dom";
-import { Select, Space } from "antd";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Select } from "antd";
 import profilePhoto from "../../assets/Naseem-Shah.webp";
 
 const Navbar = ({ user }) => {
@@ -24,7 +24,7 @@ const Navbar = ({ user }) => {
             <NavLink to={"/"} style={{ textDecoration: "none" }}>
               <h3 className="navbar-logo">
                 <FaCat style={{ fontSize: "3rem" }} />
-                LeoSitter.Com
+                LeoSitter
               </h3>
             </NavLink>
             <div className="menu-icon"></div>

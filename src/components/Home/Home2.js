@@ -56,7 +56,7 @@ const Home2 = () => {
             </p>
             <NavLink to={"/joinnow/caregiver"}>
               {" "}
-              <button className="body-btn-info">Find a pet sitter now</button>
+              <button className="body-btn-info">Find a caregiver now</button>
             </NavLink>
           </div>
         </div>

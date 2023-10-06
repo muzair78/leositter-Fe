@@ -32,7 +32,7 @@ const Home4 = () => {
             }}
           >
             <h4>Dog Sitting</h4>
-            <p style={{ fontSize: "1rem" }}>
+            <p style={{ fontSize: "0.8rem" }}>
               Over 1 million people use PetSitter.com to keep their pets happy
               and well on their days in the office or trips away
             </p>
@@ -49,7 +49,7 @@ const Home4 = () => {
             }}
           >
             <h4>Cat Sitting</h4>
-            <p style={{ fontSize: "1rem" }}>
+            <p style={{ fontSize: "0.8rem" }}>
               Over 1 million people use PetSitter.com to keep their pets happy
               and well on their days in the office or trips away
             </p>
@@ -66,7 +66,7 @@ const Home4 = () => {
             }}
           >
             <h4>Pet Sitting</h4>
-            <p style={{ fontSize: "1rem" }}>
+            <p style={{ fontSize: "0.8rem" }}>
               Over 1 million people use PetSitter.com to keep their pets happy
               and well on their days in the office or trips away
             </p>
@@ -83,7 +83,7 @@ const Home4 = () => {
             }}
           >
             <h4>Bird Sitting</h4>
-            <p style={{ fontSize: "1rem" }}>
+            <p style={{ fontSize: "0.8rem" }}>
               Over 1 million people use PetSitter.com to keep their pets happy
               and well on their days in the office or trips away
             </p>
@@ -100,7 +100,7 @@ const Home4 = () => {
             }}
           >
             <h4>Dog Grooming</h4>
-            <p style={{ fontSize: "1rem" }}>
+            <p style={{ fontSize: "0.8rem" }}>
               Over 1 million people use PetSitter.com to keep their pets happy
               and well on their days in the office or trips away
             </p>
@@ -117,7 +117,7 @@ const Home4 = () => {
             }}
           >
             <h4>Dog Eating</h4>
-            <p style={{ fontSize: "1rem" }}>
+            <p style={{ fontSize: "0.8rem" }}>
               Over 1 million people use PetSitter.com to keep their pets happy
               and well on their days in the office or trips away
             </p>
