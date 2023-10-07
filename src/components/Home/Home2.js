@@ -54,7 +54,7 @@ const Home2 = () => {
               to go! It's that easys. Schedule a time with the pet sitter of
               your choice and you're good to go! It's that easys
             </p>
-            <NavLink to={"/joinnow/caregiver"}>
+            <NavLink to={"/caretaker-signup"}>
               {" "}
               <button className="body-btn-info">Find a caregiver now</button>
             </NavLink>

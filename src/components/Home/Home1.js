@@ -20,11 +20,11 @@ const Home1 = () => {
       </div>
       <NavLink
         style={{ color: "black", fontSize: "1.2rem", marginTop: "2rem" }}
-        to={"/apply-for-job"}
+        to={"/caretaker-signup"}
       >
         Are you caregiver and looking for job?
       </NavLink>
-      <NavLink to={"/joinnow/caregiver"}>
+      <NavLink to={"/caregiver-signup"}>
         {" "}
         <button className="body-btn-info">Find a caregiver now</button>
       </NavLink>

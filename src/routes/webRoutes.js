@@ -27,7 +27,7 @@ const WebRoutes = () => {
             }
           />
           <Route path="/joinnow" element={<Work />} />
-          <Route path="/apply-for-job" element={<Giverform />} />
+          <Route path="/caregiver-signup" element={<Giverform />} />
           <Route path="/signin" element={<Login />} />
           <Route
             path="/jobForm"
@@ -38,7 +38,7 @@ const WebRoutes = () => {
             }
           />
           <Route path="/sitters/:type" element={<Nearme />} />
-          <Route path="/joinnow/caregiver" element={<Takerform />} />
+          <Route path="/caretaker-signup" element={<Takerform />} />
           <Route
             path="/care-taker"
             element={

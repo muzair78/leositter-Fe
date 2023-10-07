@@ -60,7 +60,7 @@ const Caretakerform = () => {
               fontWeight: "2px",
             }}
           >
-            Signup To LeoSitter
+            Signup Caretaker
           </div>
           <Form
             name="complex-form"

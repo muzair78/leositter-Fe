@@ -11,7 +11,7 @@ const FindJob = () => {
           <div className="care-content">
             <h3 style={{ fontSize: "1.5rem" }}>I need a caregiver</h3>
             <p>Start your free search for care in your area.</p>
-            <NavLink to={"/joinnow/caregiver"}>
+            <NavLink to={"/caretaker-signup"}>
               {" "}
               <button className="care-btn">Get Started</button>
             </NavLink>
@@ -21,7 +21,7 @@ const FindJob = () => {
           <div className="job-content">
             <h3 style={{ fontSize: "1.5rem" }}>I want a care job</h3>
             <p>Create a profile and search for jobs.</p>
-            <NavLink to={"/apply-for-job"}>
+            <NavLink to={"/caregiver-signup"}>
               <button className="care-btn">Get Started</button>
             </NavLink>
           </div>
