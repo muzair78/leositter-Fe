@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-
 import { toast } from "react-toastify";
 import { Button, Form, Input, Select, Slider, Card } from "antd";
+import { Checkbox, Col, Row } from "antd";
 import axios from "axios";
+import FormItem from "antd/es/form/FormItem";
 const { Option } = Select;
 
 const layout = {
@@ -50,6 +51,7 @@ const Caregiverprofile = () => {
     weeklyhours: 0,
     about: "",
     password: "",
+    available: "",
   });
   const user = JSON.parse(localStorage.getItem("user"));
   const userData = JSON.parse(localStorage.getItem("user"))._id;
@@ -229,6 +231,37 @@ const Caregiverprofile = () => {
             <h4 style={{ textAlign: "center" }}>{formData?.weeklyhours}hr</h4>
           </div>
         </Form.Item>
+        <FormItem name="available" label="Available">
+          <Checkbox.Group
+            style={{ width: "100%" }}
+            value={formData?.available}
+            onChange={(value) => setFormData({ ...formData, available: value })}
+          >
+            <Row style={{ height: "10rem" }}>
+              <Col span={8}>
+                <Checkbox value="Monday">Monday</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Tuesday">Tuesday</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Wednesday">Wednesday</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Thursday">Thursday</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Friday">Friday</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Saturday">Saturday</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Sunday">Sunday</Checkbox>
+              </Col>
+            </Row>
+          </Checkbox.Group>
+        </FormItem>
         <Form.Item
           name="about"
           label="About"

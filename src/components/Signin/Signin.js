@@ -66,13 +66,19 @@ const Signin = () => {
           localStorage.setItem("user", JSON.stringify(res.data.data.user));
         }
       })
-      .catch((response) => {
-        if (response.status === 409) {
-          console.log("wrong");
-        }
+      .catch(() => {
+        toast.error("Wrong Credentials", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       });
   };
-
   return (
     <>
       <div className="login-container">
