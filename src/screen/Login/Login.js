@@ -6,9 +6,7 @@ import Footer from "../../components/footer/Footer";
 const Login = () => {
   return (
     <>
-      <Navbar />
       <Signin />
-      <Footer />
     </>
   );
 };
