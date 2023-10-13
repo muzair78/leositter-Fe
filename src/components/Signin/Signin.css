@@ -1,6 +1,5 @@
 .login-container {
   display: flex;
-  margin: 3rem;
   flex-direction: row;
   border: 1px solid black;
   border: none;
@@ -11,27 +10,13 @@
   background-size: cover;
   background-position: center;
   height: 30rem;
-  width: 45rem;
-}
-@media (max-width: 1024px) {
-  .login-left {
-    width: 28rem;
-  }
-}
-@media (max-width: 768px) {
-  .login-left {
-    width: 20rem;
-  }
-}
-@media (max-width: 425px) {
-  .login-form {
-    margin-left: 2rem;
-  }
+  width: 35rem;
 }
 .login-form {
   display: flex;
   justify-content: center;
   margin-top: 10rem;
+  margin-left: 2rem;
 }
 .login {
   width: 20rem;
@@ -70,7 +55,22 @@
   width: 13rem;
   margin-top: 3rem;
 }
-
 .btn:hover {
   background-color: #ff777574;
+}
+
+@media (max-width: 1024px) {
+  .login-left {
+    width: 35rem;
+  }
+}
+@media (max-width: 768px) {
+  .login-left {
+    width: 18rem;
+  }
+}
+@media (max-width: 425px) {
+  .login-left {
+    width: 25rem;
+  }
 }

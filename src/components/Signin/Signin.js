@@ -82,11 +82,23 @@ const Signin = () => {
     <>
       <div className="login-container">
         <Row justify={"space-between"}>
-          <Col lg={13} md={8} sm={10}>
+          <Col
+            lg={10}
+            md={8}
+            sm={5}
+            xs={24}
+            style={{ border: "1px solid black" }}
+          >
             {" "}
             <div className="login-left"></div>
           </Col>
-          <Col lg={11} md={16} sm={14}>
+          <Col
+            lg={14}
+            md={16}
+            sm={14}
+            xs={24}
+            style={{ border: "1px solid black" }}
+          >
             {" "}
             <div className="login-form">
               <Form
