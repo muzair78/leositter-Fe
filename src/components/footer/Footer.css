@@ -122,13 +122,13 @@ body {
   color: #2f2f2f;
 }
 
-@media screen and (min-width: 22.375em) {
+@media screen and (min-width: 23.375em) {
   .legal .legal__links {
     margin-left: auto;
   }
 }
 
-@media screen and (min-width: 38.375em) {
+@media screen and (min-width: 39.375em) {
   .footer__nav > * {
     flex: 1;
   }
