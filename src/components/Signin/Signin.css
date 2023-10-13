@@ -1,23 +1,37 @@
 .login-container {
   display: flex;
+  margin: 3rem;
   flex-direction: row;
-  width: 60rem;
-  height: 30rem;
   border: 1px solid black;
   border: none;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  margin-left: 15rem;
-  margin-top: 5rem;
+  box-shadow: rgba(0, 0, 0, 0.295) 0px 1px 4px;
 }
 .login-left {
   background-image: url("../../assets/petOwnerLogin.svg");
   background-size: cover;
   background-position: center;
   height: 30rem;
-  width: 30rem;
+  width: 45rem;
+}
+@media (max-width: 1024px) {
+  .login-left {
+    width: 28rem;
+  }
+}
+@media (max-width: 768px) {
+  .login-left {
+    width: 20rem;
+  }
+}
+@media (max-width: 425px) {
+  .login-form {
+    margin-left: 2rem;
+  }
 }
 .login-form {
-  margin-top: 8rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
 }
 .login {
   width: 20rem;

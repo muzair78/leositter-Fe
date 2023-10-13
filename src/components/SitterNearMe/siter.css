@@ -10,7 +10,7 @@
 .main-card {
   display: flex;
   gap: 2rem;
-  justify-content: center;
+  /* justify-content: center; */
   height: 18rem;
 
   margin-top: 2rem;
@@ -28,4 +28,17 @@
 }
 .custom-rate .ant-form-item-label {
   font-size: 100px; /* Adjust the font size as per your requirements */
+}
+@media (max-width: 425px) {
+  .main-card {
+    width: 1rem;
+  }
+  .info-sec {
+    width: 40rem;
+  }
+}
+@media (max-width: 768px) {
+  .info-sec {
+    width: 35rem;
+  }
 }

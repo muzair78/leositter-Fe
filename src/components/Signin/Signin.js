@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Signin.css";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, Row, Col } from "antd";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { MdKey } from "react-icons/md";
 
 const onFinish = (values) => {
   console.log("Success:", values);
@@ -82,70 +81,77 @@ const Signin = () => {
   return (
     <>
       <div className="login-container">
-        <div className="login-left"></div>
-
-        <div className="login-form">
-          <Form
-            name="basic"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
-            style={{ maxWidth: 600 }}
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
-          >
-            <Form.Item
-              label="Email"
-              name="email"
-              rules={[
-                { required: true, message: "Please input your username!" },
-              ]}
-            >
-              <Input
-                className="login"
-                name="email"
-                value={user.email}
-                onChange={userData}
-                autoComplete="on"
-              />
-            </Form.Item>
-
-            <Form.Item
-              label="Password"
-              name="password"
-              rules={[
-                { required: true, message: "Please input your password!" },
-              ]}
-            >
-              <Input.Password
-                name={"password"}
-                className="password"
-                value={user.password}
-                onChange={userData}
-              />
-            </Form.Item>
-
-            <Form.Item
-              name="remember"
-              valuePropName="checked"
-              wrapperCol={{ offset: 8, span: 16 }}
-            >
-              <Checkbox>Remember me</Checkbox>
-            </Form.Item>
-
-            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="btn"
-                onClick={fetchData}
+        <Row justify={"space-between"}>
+          <Col lg={13} md={8} sm={10}>
+            {" "}
+            <div className="login-left"></div>
+          </Col>
+          <Col lg={11} md={16} sm={14}>
+            {" "}
+            <div className="login-form">
+              <Form
+                name="basic"
+                labelCol={{ span: 8 }}
+                wrapperCol={{ span: 16 }}
+                style={{ maxWidth: 600 }}
+                initialValues={{ remember: true }}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                autoComplete="off"
               >
-                Signin
-              </Button>
-            </Form.Item>
-          </Form>
-        </div>
+                <Form.Item
+                  label="Email"
+                  name="email"
+                  rules={[
+                    { required: true, message: "Please input your username!" },
+                  ]}
+                >
+                  <Input
+                    className="login"
+                    name="email"
+                    value={user.email}
+                    onChange={userData}
+                    autoComplete="on"
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  label="Password"
+                  name="password"
+                  rules={[
+                    { required: true, message: "Please input your password!" },
+                  ]}
+                >
+                  <Input.Password
+                    name={"password"}
+                    className="password"
+                    value={user.password}
+                    onChange={userData}
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  name="remember"
+                  valuePropName="checked"
+                  wrapperCol={{ offset: 8, span: 16 }}
+                >
+                  <Checkbox>Remember me</Checkbox>
+                </Form.Item>
+
+                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="btn"
+                    onClick={fetchData}
+                  >
+                    Signin
+                  </Button>
+                </Form.Item>
+              </Form>
+            </div>
+          </Col>
+        </Row>
       </div>
     </>
   );

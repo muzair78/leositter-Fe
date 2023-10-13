@@ -39,7 +39,7 @@ const Home2 = () => {
               simple questions. Help us understand what you're looking for by
               answering a few simple questions.
             </p>
-            <hr style={{ width: "40rem" }} />
+            <hr style={{ width: "40rem" }} className="hr-line" />
             <h3>Browse your top matches</h3>
             <p>
               Compare pet sitters near you for their flexibility, pricing, and
@@ -47,7 +47,7 @@ const Home2 = () => {
               near you for their flexibility, pricing, and experience. Then,
               talk to the ones you like.
             </p>
-            <hr style={{ width: "40rem" }} />
+            <hr style={{ width: "40rem" }} className="hr-line" />
             <h3>Hire the best pet sitter</h3>
             <p>
               Schedule a time with the pet sitter of your choice and you're good
