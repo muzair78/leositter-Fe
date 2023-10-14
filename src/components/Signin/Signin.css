@@ -59,18 +59,18 @@
   background-color: #ff777574;
 }
 
-@media (max-width: 1024px) {
-  .login-left {
-    width: 35rem;
-  }
-}
-@media (max-width: 768px) {
+@media (max-width: 320px) {
   .login-left {
     width: 18rem;
   }
 }
-@media (max-width: 425px) {
+@media (max-width: 992px) {
   .login-left {
-    width: 25rem;
+    width: 30rem;
+  }
+}
+@media (max-width: 768px) {
+  .login-left {
+    width: 20rem;
   }
 }
