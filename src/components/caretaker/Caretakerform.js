@@ -46,12 +46,12 @@ const Caretakerform = () => {
     <>
       <div className="container-1">
         <Row>
-          <Col md={10}>
+          <Col md={13} sm={12}>
             <div className="pic">
               <img src={careimg} alt="careimg" className="img-care" />
             </div>
           </Col>
-          <Col md={14}>
+          <Col md={11}>
             {" "}
             <div className="care-form">
               <div style={{ textAlign: "center", fontSize: "3.5rem" }}>

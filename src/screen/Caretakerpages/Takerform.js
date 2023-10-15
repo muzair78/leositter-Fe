@@ -6,9 +6,7 @@ import Footer from "../../components/footer/Footer";
 const Takerform = () => {
   return (
     <>
-      <Navbar />
       <Caretakerform />
-      <Footer />
     </>
   );
 };

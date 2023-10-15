@@ -11,7 +11,7 @@
   background-size: cover;
   background-position: center;
   height: 30rem;
-  width: 35rem;
+  width: 45rem;
 }
 .login-form {
   display: flex;
@@ -60,21 +60,18 @@
   background-color: #ff777574;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 1180px) {
   .login-left {
-    width: 18rem;
-  }
-  .login-container {
-    border: none;
-  }
-}
-@media (max-width: 992px) {
-  .login-left {
-    width: 30rem;
+    width: 32rem;
   }
 }
 @media (max-width: 768px) {
   .login-left {
-    width: 20rem;
+    display: none;
+  }
+}
+@media (max-width: 590px) {
+  .login-form {
+    width: 30rem;
   }
 }

@@ -11,14 +11,14 @@
   display: flex;
   flex-direction: column;
   float: left;
-  width: 15%;
+  width: 13%;
   padding: 2rem;
-  margin-right: 1.5rem;
+  /* margin-right: 1.5rem; */
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
 .img-care {
   height: 35rem;
-  width: 45rem;
+  width: 38rem;
   margin-top: 1.5rem;
   opacity: 0.5;
 }
@@ -33,6 +33,24 @@
 }
 form {
   margin-top: 7rem;
+}
+@media (max-width: 375px) {
+  .img-care {
+    width: 35rem;
+  }
+  .care-form {
+    height: 50rem;
+  }
+}
+@media (max-width: 425px) {
+  .care-form {
+    height: 50rem;
+  }
+}
+@media (max-width: 800) {
+  .card-img {
+    width: 20rem;
+  }
 }
 .profile-pic {
   height: 8rem;
