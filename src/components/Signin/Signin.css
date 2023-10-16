@@ -69,4 +69,7 @@ form {
   .login-container {
     box-shadow: none;
   }
+  .login-container {
+    margin-right: 3rem;
+  }
 }

@@ -89,7 +89,7 @@ const Signin = () => {
             {" "}
             <div className="login-left"></div>
           </Col>
-          <Col lg={10} sm={10} xs={15} md={24}>
+          <Col lg={10} sm={15} xs={15} md={24}>
             {" "}
             <div className="login-form">
               <Form
