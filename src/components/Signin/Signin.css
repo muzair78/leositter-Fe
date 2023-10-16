@@ -1,10 +1,7 @@
 .login-container {
-  display: flex;
-  flex-direction: row;
   border: 1px solid black;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.295) 0px 1px 4px;
-  /* width: 10rem; */
 }
 .login-left {
   background-image: url("../../assets/petOwnerLogin.svg");
@@ -14,16 +11,7 @@
   width: 45rem;
 }
 .login-form {
-  display: flex;
-  justify-content: center;
-  margin-top: 10rem;
-  margin-left: 2rem;
-}
-.login {
-  width: 20rem;
-}
-.password {
-  width: 20rem;
+  margin-top: 5rem;
 }
 .btn {
   appearance: button;
@@ -59,8 +47,12 @@
 .btn:hover {
   background-color: #ff777574;
 }
+form {
+  display: flex;
+  flex-direction: column;
+}
 
-@media (max-width: 1180px) {
+@media (max-width: 1260px) {
   .login-left {
     width: 32rem;
   }
@@ -69,9 +61,12 @@
   .login-left {
     display: none;
   }
-}
-@media (max-width: 590px) {
   .login-form {
-    width: 30rem;
+    justify-content: center;
+  }
+}
+@media (max-width: 576px) {
+  .login-container {
+    box-shadow: none;
   }
 }

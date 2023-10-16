@@ -5,6 +5,9 @@ import { Button, Checkbox, Form, Input, Row, Col } from "antd";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaUserAlt } from "react-icons/fa";
+import FormItem from "antd/es/form/FormItem";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
 const onFinish = (values) => {
   console.log("Success:", values);
@@ -82,31 +85,30 @@ const Signin = () => {
     <>
       <div className="login-container">
         <Row justify={"space-between"}>
-          <Col lg={12} md={24}>
+          <Col lg={14}>
             {" "}
             <div className="login-left"></div>
           </Col>
-          <Col lg={12} md={24} sm={24}>
+          <Col lg={10} sm={10} xs={15} md={24}>
             {" "}
             <div className="login-form">
               <Form
                 name="basic"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}
-                style={{ maxWidth: 600 }}
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
               >
                 <Form.Item
-                  label="Email"
+                  wrapperCol={{ span: 10 }}
                   name="email"
                   rules={[
                     { required: true, message: "Please input your username!" },
                   ]}
                 >
                   <Input
+                    prefix={<UserOutlined className="site-form-item-icon" />}
+                    placeholder="Enter Your Email"
                     className="login"
                     name="email"
                     value={user.email}
@@ -114,38 +116,33 @@ const Signin = () => {
                     autoComplete="on"
                   />
                 </Form.Item>
-
                 <Form.Item
-                  label="Password"
+                  wrapperCol={{ span: 10 }}
                   name="password"
                   rules={[
                     { required: true, message: "Please input your password!" },
                   ]}
                 >
                   <Input.Password
+                    prefix={<LockOutlined className="site-form-item-icon" />}
+                    placeholder="Enter Your password"
                     name={"password"}
                     className="password"
                     value={user.password}
                     onChange={userData}
                   />
                 </Form.Item>
-
-                <Form.Item
-                  name="remember"
-                  valuePropName="checked"
-                  wrapperCol={{ offset: 8, span: 16 }}
-                >
+                <Form.Item name="remember" valuePropName="checked">
                   <Checkbox>Remember me</Checkbox>
                 </Form.Item>
-
-                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                <Form.Item>
                   <Button
                     type="primary"
                     htmlType="submit"
-                    className="btn"
+                    className="login-form-button"
                     onClick={fetchData}
                   >
-                    Signin
+                    Sign in
                   </Button>
                 </Form.Item>
               </Form>
