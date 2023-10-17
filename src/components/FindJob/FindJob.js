@@ -10,7 +10,7 @@ const FindJob = () => {
         {" "}
         <Row>
           <div className="care-giver">
-            <Col style={{ border: "1px solid black" }}>
+            <Col>
               <div className="care-content">
                 <h3 style={{ fontSize: "1.5rem" }}>I need a caregiver</h3>
                 <p>Start your free search for care in your area.</p>
@@ -22,7 +22,7 @@ const FindJob = () => {
             </Col>
           </div>{" "}
           <div className="job-seeker">
-            <Col style={{ border: "1px solid black" }}>
+            <Col>
               <div className="job-content">
                 <h3 style={{ fontSize: "1.5rem" }}>I want a care job</h3>
                 <p>Create a profile and search for jobs.</p>

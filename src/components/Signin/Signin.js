@@ -85,13 +85,23 @@ const Signin = () => {
     <>
       <div className="login-container">
         <Row justify={"space-between"}>
-          <Col lg={14}>
+          <Col lg={12} md={12} xs={10}>
             {" "}
             <div className="login-left"></div>
           </Col>
-          <Col lg={10} sm={15} xs={15} md={24}>
+          <Col lg={12} sm={18} xs={20} md={12}>
             {" "}
             <div className="login-form">
+              <FaUserAlt
+                style={{
+                  position: "absolute",
+                  bottom: "250px", // Adjust the distance from the bottom as needed
+                  left: "50%", // Center the icon horizontally
+                  transform: "translateX(-50%)", // Center the icon horizontally exactly in the middle
+                  fontSize: "5rem",
+                  color: " #ff7875",
+                }}
+              />
               <Form
                 name="basic"
                 initialValues={{ remember: true }}
@@ -100,7 +110,7 @@ const Signin = () => {
                 autoComplete="off"
               >
                 <Form.Item
-                  wrapperCol={{ span: 10 }}
+                  wrapperCol={{ span: 24 }}
                   name="email"
                   rules={[
                     { required: true, message: "Please input your username!" },
@@ -117,7 +127,7 @@ const Signin = () => {
                   />
                 </Form.Item>
                 <Form.Item
-                  wrapperCol={{ span: 10 }}
+                  wrapperCol={{ span: 24 }}
                   name="password"
                   rules={[
                     { required: true, message: "Please input your password!" },
@@ -137,7 +147,8 @@ const Signin = () => {
                 </Form.Item>
                 <Form.Item>
                   <Button
-                    type="primary"
+                    wrapperCol={{ span: 12 }}
+                    danger
                     htmlType="submit"
                     className="login-form-button"
                     onClick={fetchData}
