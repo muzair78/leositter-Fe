@@ -84,24 +84,24 @@ const Signin = () => {
   return (
     <>
       <div className="login-container">
-        <Row justify={"space-between"}>
-          <Col lg={12} md={12} xs={10}>
+        <Row justify={"space-between"} align={"middle"}>
+          <Col lg={12} md={0} xs={10}>
             {" "}
             <div className="login-left"></div>
           </Col>
-          <Col lg={12} sm={18} xs={24} md={12}>
+          <Col lg={11} sm={18} xs={24} md={22}>
             {" "}
             <div className="login-form">
-              <FaUserAlt
-                style={{
-                  position: "absolute",
-                  bottom: "250px", // Adjust the distance from the bottom as needed
-                  left: "50%", // Center the icon horizontally
-                  transform: "translateX(-50%)", // Center the icon horizontally exactly in the middle
-                  fontSize: "5rem",
-                  color: " #ff7875",
-                }}
-              />
+              <div style={{ textAlign: "center" }}>
+                <FaUserAlt
+                  style={{
+                    fontSize: "5rem",
+                    color: " #ff7875",
+                    margin: "auto",
+                    marginBottom: "3rem",
+                  }}
+                />
+              </div>
               <Form
                 name="basic"
                 initialValues={{ remember: true }}
@@ -110,7 +110,7 @@ const Signin = () => {
                 autoComplete="off"
               >
                 <Form.Item
-                  wrapperCol={{ span: 24 }}
+                  wrapperCol={{ span: 22 }}
                   name="email"
                   rules={[
                     { required: true, message: "Please input your username!" },
@@ -124,10 +124,11 @@ const Signin = () => {
                     value={user.email}
                     onChange={userData}
                     autoComplete="on"
+                    style={{ padding: "0.8rem" }}
                   />
                 </Form.Item>
                 <Form.Item
-                  wrapperCol={{ span: 24 }}
+                  wrapperCol={{ span: 22 }}
                   name="password"
                   rules={[
                     { required: true, message: "Please input your password!" },
@@ -140,18 +141,23 @@ const Signin = () => {
                     className="password"
                     value={user.password}
                     onChange={userData}
+                    style={{ padding: "0.8rem" }}
                   />
                 </Form.Item>
                 <Form.Item name="remember" valuePropName="checked">
                   <Checkbox>Remember me</Checkbox>
                 </Form.Item>
-                <Form.Item>
+                <Form.Item wrapperCol={{ span: 22 }}>
                   <Button
-                    wrapperCol={{ span: 12 }}
+                    type="primary"
                     danger
                     htmlType="submit"
                     className="login-form-button"
                     onClick={fetchData}
+                    style={{
+                      width: "100%",
+                      padding: "1.5rem",
+                    }}
                   >
                     Sign in
                   </Button>
