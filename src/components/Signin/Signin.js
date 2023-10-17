@@ -5,7 +5,7 @@ import { Button, Checkbox, Form, Input, Row, Col } from "antd";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { BiSolidUserCircle } from "react-icons/bi";
+import { FaLock } from "react-icons/fa6";
 import FormItem from "antd/es/form/FormItem";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
@@ -89,11 +89,11 @@ const Signin = () => {
             {" "}
             <div className="login-left"></div>
           </Col>
-          <Col lg={11} sm={24} xs={24} md={24}>
+          <Col lg={11} sm={24} xs={24}>
             {" "}
             <div className="login-form">
               <div style={{ textAlign: "center" }}>
-                <BiSolidUserCircle
+                <FaLock
                   style={{
                     fontSize: "6rem",
                     color: " #ff7875",
