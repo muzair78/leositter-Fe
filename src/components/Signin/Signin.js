@@ -89,7 +89,7 @@ const Signin = () => {
             {" "}
             <div className="login-left"></div>
           </Col>
-          <Col lg={11} md={22} xs={24}>
+          <Col lg={12} md={22} xs={24}>
             {" "}
             <div className="login-form">
               <div style={{ textAlign: "center" }}>
@@ -110,7 +110,6 @@ const Signin = () => {
                 autoComplete="off"
               >
                 <Form.Item
-                  wrapperCol={{ span: 22 }}
                   name="email"
                   rules={[
                     { required: true, message: "Please input your username!" },
@@ -128,7 +127,6 @@ const Signin = () => {
                   />
                 </Form.Item>
                 <Form.Item
-                  wrapperCol={{ span: 22 }}
                   name="password"
                   rules={[
                     { required: true, message: "Please input your password!" },
@@ -147,7 +145,7 @@ const Signin = () => {
                 <Form.Item name="remember" valuePropName="checked">
                   <Checkbox>Remember me</Checkbox>
                 </Form.Item>
-                <Form.Item wrapperCol={{ span: 22 }}>
+                <Form.Item>
                   <Button
                     type="primary"
                     danger
