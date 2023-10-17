@@ -56,7 +56,7 @@ form {
     display: none;
   }
 }
-@media (max-width: 675px) {
+@media (max-width: 768px) {
   .login-form {
     padding: 1rem;
   }
