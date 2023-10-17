@@ -85,11 +85,11 @@ const Signin = () => {
     <>
       <div className="login-container">
         <Row justify={"space-between"} align={"middle"}>
-          <Col lg={12} xs={10}>
+          <Col lg={12}>
             {" "}
             <div className="login-left"></div>
           </Col>
-          <Col lg={11} sm={24} xs={24}>
+          <Col lg={11} md={22} xs={24}>
             {" "}
             <div className="login-form">
               <div style={{ textAlign: "center" }}>
