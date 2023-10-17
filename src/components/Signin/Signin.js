@@ -5,7 +5,7 @@ import { Button, Checkbox, Form, Input, Row, Col } from "antd";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaUserAlt } from "react-icons/fa";
+import { BiSolidUserCircle } from "react-icons/bi";
 import FormItem from "antd/es/form/FormItem";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
@@ -93,14 +93,16 @@ const Signin = () => {
             {" "}
             <div className="login-form">
               <div style={{ textAlign: "center" }}>
-                <FaUserAlt
+                <h3
                   style={{
-                    fontSize: "5rem",
+                    fontSize: "7rem",
                     color: " #ff7875",
                     margin: "auto",
                     marginBottom: "3rem",
                   }}
-                />
+                >
+                  Sign-in
+                </h3>
               </div>
               <Form
                 name="basic"
