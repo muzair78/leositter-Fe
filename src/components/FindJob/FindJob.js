@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Row } from "antd";
+import { Col, Row, Button } from "antd";
 import { NavLink } from "react-router-dom";
 import "./FindJob.css";
 
@@ -10,24 +10,28 @@ const FindJob = () => {
         {" "}
         <Row>
           <div className="care-giver">
-            <Col>
+            <Col sm={24} xs={24}>
               <div className="care-content">
                 <h3 style={{ fontSize: "1.5rem" }}>I need a caregiver</h3>
                 <p>Start your free search for care in your area.</p>
                 <NavLink to={"/caretaker-signup"}>
                   {" "}
-                  <button className="care-btn">Get Started</button>
+                  <Button type="primary" danger>
+                    Get Started
+                  </Button>
                 </NavLink>
               </div>
             </Col>
           </div>{" "}
           <div className="job-seeker">
-            <Col>
+            <Col sm={24} xs={24}>
               <div className="job-content">
                 <h3 style={{ fontSize: "1.5rem" }}>I want a care job</h3>
                 <p>Create a profile and search for jobs.</p>
                 <NavLink to={"/caregiver-signup"}>
-                  <button className="care-btn">Get Started</button>
+                  <Button danger type="primary">
+                    Get Started
+                  </Button>
                 </NavLink>
               </div>
             </Col>
