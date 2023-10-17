@@ -85,24 +85,22 @@ const Signin = () => {
     <>
       <div className="login-container">
         <Row justify={"space-between"} align={"middle"}>
-          <Col lg={12} md={0} xs={10}>
+          <Col lg={12} xs={10}>
             {" "}
             <div className="login-left"></div>
           </Col>
-          <Col lg={11} sm={18} xs={24} md={22}>
+          <Col lg={11} sm={24} xs={24} md={24}>
             {" "}
             <div className="login-form">
               <div style={{ textAlign: "center" }}>
-                <h3
+                <BiSolidUserCircle
                   style={{
-                    fontSize: "7rem",
+                    fontSize: "6rem",
                     color: " #ff7875",
                     margin: "auto",
-                    marginBottom: "3rem",
+                    marginBottom: "2.5rem",
                   }}
-                >
-                  Sign-in
-                </h3>
+                />
               </div>
               <Form
                 name="basic"
