@@ -158,10 +158,14 @@ const Signin = () => {
                     onClick={fetchData}
                     style={{
                       width: "100%",
-                      padding: "1.5rem",
+                      height: "3rem",
+                      textAlign: "center",
+                      fontWeight: "bolder",
+                      fontSize: "1rem",
+                      // Adds 0.5rem space above and below the button
                     }}
                   >
-                    Sign in
+                    Sign-in
                   </Button>
                 </Form.Item>
               </Form>
