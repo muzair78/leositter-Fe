@@ -45,13 +45,11 @@ const Caretakerform = () => {
   return (
     <>
       <div className="container-1">
-        <Row>
-          <Col md={13} sm={12}>
-            <div className="pic">
-              <img src={careimg} alt="careimg" className="img-care" />
-            </div>
+        <Row justify={"space-between"}>
+          <Col lg={12}>
+            <img src={careimg} alt="careimg" className="img-care" />
           </Col>
-          <Col md={11}>
+          <Col md={24} lg={12} sm={24}>
             {" "}
             <div className="care-form">
               <div style={{ textAlign: "center", fontSize: "3.5rem" }}>
@@ -82,9 +80,9 @@ const Caretakerform = () => {
                       rules={[{ required: true, message: "Name is required" }]}
                     >
                       <Input
-                        style={{ width: "20rem" }}
                         placeholder="Full Name"
                         type="text"
+                        style={{ padding: "0.5rem" }}
                       />
                     </Form.Item>
                   </Space>
@@ -97,9 +95,9 @@ const Caretakerform = () => {
                       rules={[{ required: true, message: "Email is required" }]}
                     >
                       <Input
-                        style={{ width: "20rem" }}
                         placeholder="Enter Email"
                         type="email"
+                        style={{ padding: "0.5rem" }}
                       />
                     </Form.Item>
                   </Space>
@@ -112,9 +110,9 @@ const Caretakerform = () => {
                       rules={[{ required: true, message: "Phone is required" }]}
                     >
                       <Input
-                        style={{ width: "20rem" }}
                         placeholder="Phone Number"
                         type="tel"
+                        style={{ padding: "0.5rem" }}
                       />
                     </Form.Item>
                   </Space>
@@ -142,7 +140,7 @@ const Caretakerform = () => {
                       ]}
                     >
                       <Input
-                        style={{ width: "20rem" }}
+                        style={{ padding: "0.5rem" }}
                         placeholder="Create a strong password"
                         autocomplete={"off"}
                       />
@@ -173,20 +171,16 @@ const Caretakerform = () => {
                       ]}
                     >
                       <Input
-                        style={{ width: "20rem" }}
+                        style={{ padding: "0.5rem" }}
                         placeholder="Confirm Password"
+                        autoComplete="off"
                       />
                     </Form.Item>
                   </Space>
                 </Form.Item>
                 <Form.Item label=" " colon={false}>
                   {" "}
-                  <Button
-                    type="primary"
-                    danger
-                    htmlType="submit"
-                    style={{ width: "10rem" }}
-                  >
+                  <Button danger htmlType="submit" danger>
                     Sign Up
                   </Button>
                 </Form.Item>

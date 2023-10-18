@@ -3,55 +3,28 @@
   width: 10rem;
   border-radius: 1rem;
 }
-.container-1 {
-  display: flex;
-  flex-direction: row;
-}
+
 .container {
   display: flex;
   flex-direction: column;
   float: left;
   width: 13%;
   padding: 2rem;
-  /* margin-right: 1.5rem; */
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
 .img-care {
-  height: 35rem;
-  width: 38rem;
-  margin-top: 1.5rem;
+  width: 100%;
   opacity: 0.5;
+  height: 100vh;
+}
+@media (max-width: 992px) {
+  .img-care {
+    display: none;
+  }
 }
 .care-form {
-  border: 1px solid black;
-  border: none;
-  height: 35rem;
-  width: 40rem;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
-    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
-  margin-top: 1.5rem;
 }
-form {
-  margin-top: 7rem;
-}
-@media (max-width: 375px) {
-  .img-care {
-    width: 35rem;
-  }
-  .care-form {
-    height: 50rem;
-  }
-}
-@media (max-width: 425px) {
-  .care-form {
-    height: 50rem;
-  }
-}
-@media (max-width: 800) {
-  .card-img {
-    width: 20rem;
-  }
-}
+
 .profile-pic {
   height: 8rem;
   width: 8rem;
