@@ -180,7 +180,7 @@ const Caretakerform = () => {
                 </Form.Item>
                 <Form.Item label=" " colon={false}>
                   {" "}
-                  <Button danger htmlType="submit" danger>
+                  <Button danger htmlType="submit">
                     Sign Up
                   </Button>
                 </Form.Item>

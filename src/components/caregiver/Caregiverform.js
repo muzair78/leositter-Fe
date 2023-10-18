@@ -4,7 +4,7 @@ import axios from "axios";
 import { RiAccountPinCircleFill } from "react-icons/ri";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-import { Checkbox, Col, Form, Input, Row, Select, Space } from "antd";
+import { Button, Checkbox, Col, Form, Input, Row, Select, Space } from "antd";
 import "./JoinNow.css";
 import { useNavigate } from "react-router-dom";
 
@@ -118,35 +118,34 @@ const Caregiverform = () => {
     <>
       <div className="parent-div-pet">
         <Row justify={"space-between"}>
+          <Col lg={12}>
+            {" "}
+            <div className="pet-img">
+              <img src={cat} className="cat-img" alt="abc" />
+            </div>
+          </Col>
           <Col lg={12} md={12} sm={10} xs={15}>
             {" "}
             <div className="form-container">
               <div
-                style={{
-                  textAlign: "center",
-                  fontSize: "4rem",
-                  marginTop: "1rem",
-                }}
+                className="Giverform"
+                style={{ textAlign: "center", fontSize: "3rem" }}
               >
                 {" "}
-                <RiAccountPinCircleFill style={{ color: " #ff7875" }} />
+                <RiAccountPinCircleFill
+                  style={{ color: " #ff7875", textAlign: "center" }}
+                />
                 <div
                   style={{
                     fontSize: "1.5rem",
-                    fontWeight: "bolder",
+
                     color: " #ff7875",
                   }}
                 >
                   Caregiver Signup
                 </div>
               </div>
-              <Form
-                labelCol={{ span: 4 }}
-                wrapperCol={{ span: 14 }}
-                layout="horizontal"
-                style={{ maxWidth: 600 }}
-                className="form-child"
-              >
+              <Form layout="horizontal" className="form-child">
                 <Form.Item label="Name">
                   <Space>
                     <Form.Item
@@ -155,16 +154,16 @@ const Caregiverform = () => {
                       rules={[{ required: true, message: "Name is required" }]}
                     >
                       <Input
-                        style={{ width: "20rem" }}
                         name="name"
                         placeholder="Your Name"
                         value={user.name}
                         onChange={userData}
+                        style={{ padding: "0.3rem" }}
                       />
                     </Form.Item>
                   </Space>
                 </Form.Item>
-                <Form.Item label="Name">
+                <Form.Item label="Username">
                   <Space>
                     <Form.Item
                       name="username"
@@ -174,7 +173,7 @@ const Caregiverform = () => {
                       ]}
                     >
                       <Input
-                        style={{ width: "20rem" }}
+                        style={{ padding: "0.3rem" }}
                         name="username"
                         placeholder="Your Username"
                         value={user.username}
@@ -191,7 +190,7 @@ const Caregiverform = () => {
                       rules={[{ required: true, message: "Phone is required" }]}
                     >
                       <Input
-                        style={{ width: "20rem" }}
+                        style={{ padding: "0.3rem" }}
                         name="phone"
                         placeholder="your phone number"
                         value={user.phone}
@@ -209,7 +208,7 @@ const Caregiverform = () => {
                     >
                       <Input
                         name="email"
-                        style={{ width: "20rem" }}
+                        style={{ padding: "0.3rem" }}
                         placeholder="Enter Email"
                         type="email"
                         value={user.email}
@@ -250,7 +249,7 @@ const Caregiverform = () => {
                       <Input
                         name="password"
                         value={user.password}
-                        style={{ width: "20rem" }}
+                        style={{ padding: "0.3rem" }}
                         placeholder="Create a strong password"
                         onChange={userData}
                         autoComplete={"off"}
@@ -269,7 +268,7 @@ const Caregiverform = () => {
                     >
                       <Input
                         name="cpassword"
-                        style={{ width: "20rem" }}
+                        style={{ padding: "0.3rem" }}
                         placeholder="Confirm Password"
                         value={user.cpassword}
                         onChange={userData}
@@ -278,21 +277,13 @@ const Caregiverform = () => {
                     </Form.Item>
                   </Space>
                 </Form.Item>
-                <Form.Item name="agreement" valuePropName="checked">
-                  <Checkbox>I have read the agreement</Checkbox>
-                </Form.Item>
-                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-                  <button className="submit-btn" onClick={fetchUser}>
+
+                <Form.Item>
+                  <Button danger onClick={fetchUser} style={{ width: "50%" }}>
                     Signup
-                  </button>
+                  </Button>
                 </Form.Item>
               </Form>
-            </div>
-          </Col>
-          <Col lg={12} md={9} sm={10} xs={15}>
-            {" "}
-            <div className="pet-img">
-              <img src={cat} className="cat-img" alt="abc" />
             </div>
           </Col>
         </Row>
