@@ -89,7 +89,7 @@ const Signin = () => {
             {" "}
             <div className="login-left"></div>
           </Col>
-          <Col lg={12} md={22} xs={24}>
+          <Col lg={12} md={24} sm={24} xs={24}>
             {" "}
             <div className="login-form">
               <div style={{ textAlign: "center" }}>

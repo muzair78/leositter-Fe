@@ -49,7 +49,7 @@ const Caretakerform = () => {
           <Col lg={12}>
             <img src={careimg} alt="careimg" className="img-care" />
           </Col>
-          <Col md={24} lg={12} sm={24}>
+          <Col md={24} lg={12} sm={24} xs={24}>
             {" "}
             <div className="care-form">
               <div style={{ textAlign: "center", fontSize: "3.5rem" }}>
@@ -68,119 +68,93 @@ const Caretakerform = () => {
               <Form
                 name="complex-form"
                 onFinish={onFinish}
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}
-                style={{ maxWidth: 600, marginTop: "2rem" }}
+                style={{ marginTop: "1rem" }}
               >
-                <Form.Item label="Username">
-                  <Space>
-                    <Form.Item
-                      name="name"
-                      noStyle
-                      rules={[{ required: true, message: "Name is required" }]}
-                    >
-                      <Input
-                        placeholder="Full Name"
-                        type="text"
-                        style={{ padding: "0.5rem" }}
-                      />
-                    </Form.Item>
-                  </Space>
+                <Form.Item
+                  name="name"
+                  rules={[{ required: true, message: "Name is required" }]}
+                >
+                  <Input
+                    placeholder="Full Name"
+                    type="text"
+                    style={{ padding: "0.5rem" }}
+                  />
                 </Form.Item>
-                <Form.Item label="Email">
-                  <Space>
-                    <Form.Item
-                      name="email"
-                      noStyle
-                      rules={[{ required: true, message: "Email is required" }]}
-                    >
-                      <Input
-                        placeholder="Enter Email"
-                        type="email"
-                        style={{ padding: "0.5rem" }}
-                      />
-                    </Form.Item>
-                  </Space>
+
+                <Form.Item
+                  name="email"
+                  rules={[{ required: true, message: "Email is required" }]}
+                >
+                  <Input
+                    placeholder="Enter Email"
+                    type="email"
+                    style={{ padding: "0.5rem" }}
+                  />
                 </Form.Item>
-                <Form.Item label="Phone">
-                  <Space>
-                    <Form.Item
-                      name="phone"
-                      noStyle
-                      rules={[{ required: true, message: "Phone is required" }]}
-                    >
-                      <Input
-                        placeholder="Phone Number"
-                        type="tel"
-                        style={{ padding: "0.5rem" }}
-                      />
-                    </Form.Item>
-                  </Space>
+
+                <Form.Item
+                  name="phone"
+                  rules={[{ required: true, message: "Phone is required" }]}
+                >
+                  <Input
+                    placeholder="Phone Number"
+                    type="tel"
+                    style={{ padding: "0.5rem" }}
+                  />
                 </Form.Item>
-                <Form.Item label="Service">
-                  <Form.Item
-                    name="service" // Corrected the name attribute to a string
-                    noStyle
-                    rules={[{ required: true, message: "Service is required" }]}
-                  >
-                    <Select placeholder="Which service do you want?">
-                      <Option value="Cat Sitter">Cat Sitter</Option>
-                      <Option value="Dog Sitter">Dog Sitter</Option>
-                      <Option value="Bird Sitter">Bird Sitter</Option>
-                    </Select>
-                  </Form.Item>
+
+                <Form.Item
+                  name="service" // Corrected the name attribute to a string
+                  rules={[{ required: true, message: "Service is required" }]}
+                >
+                  <Select placeholder="Which service do you want?">
+                    <Option value="Cat Sitter">Cat Sitter</Option>
+                    <Option value="Dog Sitter">Dog Sitter</Option>
+                    <Option value="Bird Sitter">Bird Sitter</Option>
+                  </Select>
                 </Form.Item>
-                <Form.Item label="Password">
-                  <Space>
-                    <Form.Item
-                      name="password"
-                      noStyle
-                      rules={[
-                        { required: true, message: "Password is required" },
-                      ]}
-                    >
-                      <Input
-                        style={{ padding: "0.5rem" }}
-                        placeholder="Create a strong password"
-                        autocomplete={"off"}
-                      />
-                    </Form.Item>
-                  </Space>
+
+                <Form.Item
+                  name="password"
+                  rules={[{ required: true, message: "Password is required" }]}
+                >
+                  <Input
+                    style={{ padding: "0.5rem" }}
+                    placeholder="Create a strong password"
+                    autocomplete={"off"}
+                  />
                 </Form.Item>
-                <Form.Item label="Cpassword">
-                  <Space>
-                    <Form.Item
-                      name="cpassword"
-                      autocomplete={"off"}
-                      noStyle
-                      rules={[
-                        {
-                          required: true,
-                          message: "Confirm Password is required",
-                        },
-                        ({ getFieldValue }) => ({
-                          validator(_, value) {
-                            if (!value || getFieldValue("password") === value) {
-                              return Promise.resolve();
-                            }
-                            return Promise.reject(
-                              new Error("Passwords do not match")
-                            );
-                          },
-                        }),
-                      ]}
-                    >
-                      <Input
-                        style={{ padding: "0.5rem" }}
-                        placeholder="Confirm Password"
-                        autoComplete="off"
-                      />
-                    </Form.Item>
-                  </Space>
+
+                <Form.Item
+                  name="cpassword"
+                  autocomplete={"off"}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Confirm Password is required",
+                    },
+                    ({ getFieldValue }) => ({
+                      validator(_, value) {
+                        if (!value || getFieldValue("password") === value) {
+                          return Promise.resolve();
+                        }
+                        return Promise.reject(
+                          new Error("Passwords do not match")
+                        );
+                      },
+                    }),
+                  ]}
+                >
+                  <Input
+                    style={{ padding: "0.5rem" }}
+                    placeholder="Confirm Password"
+                    autoComplete="off"
+                  />
                 </Form.Item>
-                <Form.Item label=" " colon={false}>
+
+                <Form.Item colon={false}>
                   {" "}
-                  <Button danger htmlType="submit">
+                  <Button danger htmlType="submit" style={{ width: "50%" }}>
                     Sign Up
                   </Button>
                 </Form.Item>

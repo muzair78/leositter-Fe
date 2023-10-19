@@ -116,15 +116,15 @@ const Caregiverform = () => {
   };
   return (
     <>
-      <div className="parent-div-pet">
-        <Row justify={"space-between"}>
-          <Col lg={12}>
+      <Row justify={"space-between"}>
+        <div className="parent-div-pet">
+          <Col md={12}>
             {" "}
             <div className="pet-img">
               <img src={cat} className="cat-img" alt="abc" />
             </div>
           </Col>
-          <Col lg={12} md={12} sm={10} xs={15}>
+          <Col md={12} sm={24} xs={24}>
             {" "}
             <div className="form-container">
               <div
@@ -146,136 +146,100 @@ const Caregiverform = () => {
                 </div>
               </div>
               <Form layout="horizontal" className="form-child">
-                <Form.Item label="Name">
-                  <Space>
-                    <Form.Item
-                      name="name"
-                      noStyle
-                      rules={[{ required: true, message: "Name is required" }]}
-                    >
-                      <Input
-                        name="name"
-                        placeholder="Your Name"
-                        value={user.name}
-                        onChange={userData}
-                        style={{ padding: "0.3rem" }}
-                      />
-                    </Form.Item>
-                  </Space>
+                <Form.Item
+                  name="name"
+                  rules={[{ required: true, message: "Name is required" }]}
+                >
+                  <Input
+                    name="name"
+                    placeholder="Your Name"
+                    value={user.name}
+                    onChange={userData}
+                    style={{ padding: "0.5rem" }}
+                  />
                 </Form.Item>
-                <Form.Item label="Username">
-                  <Space>
-                    <Form.Item
-                      name="username"
-                      noStyle
-                      rules={[
-                        { required: true, message: "Username is required" },
-                      ]}
-                    >
-                      <Input
-                        style={{ padding: "0.3rem" }}
-                        name="username"
-                        placeholder="Your Username"
-                        value={user.username}
-                        onChange={userData}
-                      />
-                    </Form.Item>
-                  </Space>
+
+                <Form.Item
+                  name="username"
+                  rules={[{ required: true, message: "Username is required" }]}
+                >
+                  <Input
+                    style={{ padding: "0.5rem" }}
+                    name="username"
+                    placeholder="Your Username"
+                    value={user.username}
+                    onChange={userData}
+                  />
                 </Form.Item>
-                <Form.Item label="Phone">
-                  <Space>
-                    <Form.Item
-                      name="phone"
-                      noStyle
-                      rules={[{ required: true, message: "Phone is required" }]}
-                    >
-                      <Input
-                        style={{ padding: "0.3rem" }}
-                        name="phone"
-                        placeholder="your phone number"
-                        value={user.phone}
-                        onChange={userData}
-                      />
-                    </Form.Item>
-                  </Space>
+
+                <Form.Item
+                  name="phone"
+                  rules={[{ required: true, message: "Phone is required" }]}
+                >
+                  <Input
+                    style={{ padding: "0.5rem" }}
+                    name="phone"
+                    placeholder="your phone number"
+                    value={user.phone}
+                    onChange={userData}
+                  />
                 </Form.Item>
-                <Form.Item label="Email">
-                  <Space>
-                    <Form.Item
-                      name="email"
-                      noStyle
-                      rules={[{ required: true, message: "Email is required" }]}
-                    >
-                      <Input
-                        name="email"
-                        style={{ padding: "0.3rem" }}
-                        placeholder="Enter Email"
-                        type="email"
-                        value={user.email}
-                        onChange={userData}
-                      />
-                    </Form.Item>
-                  </Space>
+
+                <Form.Item
+                  name="email"
+                  rules={[{ required: true, message: "Email is required" }]}
+                >
+                  <Input
+                    name="email"
+                    style={{ padding: "0.5rem" }}
+                    placeholder="Enter Email"
+                    type="email"
+                    value={user.email}
+                    onChange={userData}
+                  />
                 </Form.Item>
-                <Form.Item label="Service">
-                  <Form.Item
-                    name="Pservice" // Corrected the name attribute to a string
-                    noStyle
-                    rules={[{ required: true, message: "Service is required" }]}
-                    value={user.Pservice}
+
+                <Form.Item
+                  name="Pservice" // Corrected the name attribute to a string
+                  rules={[{ required: true, message: "Service is required" }]}
+                  value={user.Pservice}
+                  onChange={(value) => setUser({ ...user, Pservice: value })}
+                >
+                  <Select
+                    placeholder="Which service do you offer?"
                     onChange={(value) => setUser({ ...user, Pservice: value })}
                   >
-                    <Select
-                      placeholder="Which service do you offer?"
-                      onChange={(value) =>
-                        setUser({ ...user, Pservice: value })
-                      }
-                    >
-                      <Option value="Cat Sitter">Cat Sitter</Option>
-                      <Option value="Dog Sitter">Dog Sitter</Option>
-                      <Option value="Bird Sitter">Bird Sitter</Option>
-                    </Select>
-                  </Form.Item>
+                    <Option value="Cat Sitter">Cat Sitter</Option>
+                    <Option value="Dog Sitter">Dog Sitter</Option>
+                    <Option value="Bird Sitter">Bird Sitter</Option>
+                  </Select>
                 </Form.Item>
-                <Form.Item label="Password">
-                  <Space>
-                    <Form.Item
-                      name="password"
-                      noStyle
-                      rules={[
-                        { required: true, message: "Password is required" },
-                      ]}
-                    >
-                      <Input
-                        name="password"
-                        value={user.password}
-                        style={{ padding: "0.3rem" }}
-                        placeholder="Create a strong password"
-                        onChange={userData}
-                        autoComplete={"off"}
-                      />
-                    </Form.Item>
-                  </Space>
+
+                <Form.Item
+                  rules={[{ required: true, message: "Password is required" }]}
+                >
+                  <Input
+                    name="password"
+                    value={user.password}
+                    style={{ padding: "0.5rem" }}
+                    placeholder="Create a strong password"
+                    onChange={userData}
+                    autoComplete={"off"}
+                  />
                 </Form.Item>
-                <Form.Item label="C_Password">
-                  <Space>
-                    <Form.Item
-                      name="cpassword"
-                      noStyle
-                      rules={[
-                        { required: true, message: "Password is required" },
-                      ]}
-                    >
-                      <Input
-                        name="cpassword"
-                        style={{ padding: "0.3rem" }}
-                        placeholder="Confirm Password"
-                        value={user.cpassword}
-                        onChange={userData}
-                        autoComplete={"off"}
-                      />
-                    </Form.Item>
-                  </Space>
+
+                <Form.Item
+                  name="cpassword"
+                  rules={[{ required: true, message: "Password is required" }]}
+                >
+                  <Input
+                    name="cpassword"
+                    style={{ padding: "0.5rem" }}
+                    placeholder="Confirm Password"
+                    value={user.cpassword}
+                    onChange={userData}
+                    autoComplete={"off"}
+                  />
                 </Form.Item>
 
                 <Form.Item>
@@ -286,8 +250,8 @@ const Caregiverform = () => {
               </Form>
             </div>
           </Col>
-        </Row>
-      </div>
+        </div>
+      </Row>
     </>
   );
 };
