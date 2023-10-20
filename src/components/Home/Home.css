@@ -55,9 +55,8 @@
   margin-top: 3rem;
 }
 .services-cards {
+  margin-left: 2rem;
   padding: 2rem;
-  align-items: center;
-  justify-content: center;
 }
 .circle {
   position: absolute;

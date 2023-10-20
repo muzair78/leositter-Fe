@@ -12,6 +12,7 @@
 .parent-div-pet {
   display: flex;
   flex-direction: row;
+  margin-top: 3rem;
 }
 .button-6:hover,
 .button-6:focus {

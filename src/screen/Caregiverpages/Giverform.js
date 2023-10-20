@@ -6,7 +6,9 @@ import Footer from "../../components/footer/Footer";
 const Giverform = () => {
   return (
     <>
+      <Navbar />
       <Caregiverform />
+      <Footer />
     </>
   );
 };

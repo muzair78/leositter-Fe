@@ -3,7 +3,7 @@ import "../Home/Home.css";
 import { FaCat } from "react-icons/fa";
 import "./Navbar.css";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Select } from "antd";
+import { Button, Select } from "antd";
 import profilePhoto from "../../assets/Naseem-Shah.webp";
 
 const Navbar = ({ user }) => {
@@ -68,12 +68,12 @@ const Navbar = ({ user }) => {
                 </>
               ) : (
                 <>
-                  <NavLink className="login-btn" to={"/signin"}>
-                    Login
-                  </NavLink>
-                  <NavLink className="join-btn" to={"/joinnow"}>
-                    Join Now
-                  </NavLink>
+                  <Button type="primary" danger>
+                    <NavLink to={"/signin"}>Login</NavLink>
+                  </Button>
+                  <Button type="primary" danger>
+                    <NavLink to={"/joinnow"}>Join Now</NavLink>
+                  </Button>
                 </>
               )}
             </div>

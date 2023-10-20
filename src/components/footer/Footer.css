@@ -145,8 +145,3 @@ body {
     flex: 2 0px;
   }
 }
-@media (max-width: 1024px) {
-  .footer {
-    width: 56rem;
-  }
-}

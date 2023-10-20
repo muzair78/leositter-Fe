@@ -6,7 +6,9 @@ import Footer from "../../components/footer/Footer";
 const Work = () => {
   return (
     <>
+      <Navbar />
       <FindJob />
+      <Footer />
     </>
   );
 };
