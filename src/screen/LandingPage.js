@@ -11,12 +11,10 @@ const LandingPage = () => {
 
   return (
     <>
-      <Navbar user={user} />
       <Home1 />
       <Home4 />
-      <Home2 />
       <Home3 />
-      <Footer />
+      <Home2 />
     </>
   );
 };

@@ -1,8 +1,9 @@
 .container-full {
   padding: 3rem;
   display: flex;
+  justify-content: center;
+  margin-top: 10rem;
   flex-direction: column;
-  gap: 0.5rem;
 }
 @media (max-width: 576px) {
   #s-card {
