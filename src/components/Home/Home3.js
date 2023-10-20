@@ -20,7 +20,7 @@ const Home3 = () => {
             The #1 way to hire a professional pet sitter
           </h3>
           <div className="page-3-main">
-            <Col md={12} lg={12}>
+            <Col md={24} lg={12} sm={24}>
               <div className="leftDiv">
                 <h3>Trustworthy, local pet sitters</h3>
                 <p>
@@ -45,16 +45,15 @@ const Home3 = () => {
                 </p>
               </div>
             </Col>
-            <Col lg={12} sm={12} md={12} xs={12}>
+            <Col lg={12}>
               <div className="right-image">
                 <img
                   src={DPS}
                   className="dps-image"
                   alt="newpic"
                   style={{
-                    marginLeft: "1rem",
-                    height: "30rem",
-                    width: "35rem",
+                    height: "auto",
+                    width: "100%",
                   }}
                 />
               </div>

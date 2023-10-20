@@ -17,16 +17,15 @@ const Home2 = () => {
         }}
       />
       <div className="header-part">
-        <h2
+        <h1
           style={{
             marginTop: "2rem",
             textAlign: "center",
-            fontSize: "2rem",
           }}
           className="nd-head"
         >
           We're here for you at every step of the process
-        </h2>
+        </h1>
       </div>
       <div className="profile-body">
         <div className="info-part">

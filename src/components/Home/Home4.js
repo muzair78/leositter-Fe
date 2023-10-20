@@ -11,20 +11,22 @@ import { Col, Row } from "antd";
 const Home4 = () => {
   return (
     <>
-      <Row>
-        <Col lg={24} md={24} sm={24}>
+      {" "}
+      <hr
+        className="hr-line"
+        style={{
+          width: "5rem",
+          fontWeight: "bold",
+          marginTop: "8rem",
+          color: "green",
+        }}
+      />
+      <h2 className="main-heading">Our Services</h2>
+      <div className="services-cards">
+        <Row justify={"space-between"}>
           {" "}
-          <hr
-            className="hr-line"
-            style={{
-              width: "5rem",
-              fontWeight: "bold",
-              marginTop: "8rem",
-              color: "green",
-            }}
-          />
-          <h2 className="main-heading">Our Services</h2>
-          <div className="services-cards">
+          <Col>
+            {" "}
             <div className="card">
               <div className="circle">
                 <FaDog className="font-image" />
@@ -42,6 +44,9 @@ const Home4 = () => {
                 </p>
               </div>
             </div>
+          </Col>
+          <Col>
+            {" "}
             <div className="card">
               <div className="circle">
                 <FaCat className="font-image" />
@@ -59,6 +64,9 @@ const Home4 = () => {
                 </p>
               </div>
             </div>
+          </Col>
+          <Col>
+            {" "}
             <div className="card">
               <div className="circle">
                 <MdPets className="font-image" />
@@ -76,6 +84,9 @@ const Home4 = () => {
                 </p>
               </div>
             </div>
+          </Col>
+          <Col>
+            {" "}
             <div className="card">
               <div className="circle">
                 <GiHummingbird className="font-image" />
@@ -92,7 +103,10 @@ const Home4 = () => {
                   happy and well on their days in the office or trips away
                 </p>
               </div>
-            </div>
+            </div>{" "}
+          </Col>
+          <Col>
+            {" "}
             <div className="card">
               <div className="circle">
                 <TbDog className="font-image" />
@@ -109,7 +123,10 @@ const Home4 = () => {
                   happy and well on their days in the office or trips away
                 </p>
               </div>
-            </div>
+            </div>{" "}
+          </Col>
+          <Col>
+            {" "}
             <div className="card">
               <div className="circle">
                 <GiDogBowl className="font-image" />
@@ -127,9 +144,9 @@ const Home4 = () => {
                 </p>
               </div>
             </div>
-          </div>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      </div>
     </>
   );
 };

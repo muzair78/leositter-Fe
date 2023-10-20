@@ -13,6 +13,7 @@
 
 .page-3-main {
   display: flex;
+  padding: 2rem;
 }
 .header-div3 {
   text-align: center;
@@ -20,11 +21,6 @@
 }
 .right-image {
   border-radius: 1.5rem;
-  margin-right: 3rem;
-}
-
-.leftDiv {
-  margin-left: 2rem;
 }
 
 /* css of home1 */
@@ -54,16 +50,14 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 16px;
   text-align: center;
-  padding: 30px 10px 15px 10px;
   position: relative;
   cursor: pointer;
+  margin-top: 3rem;
 }
 .services-cards {
-  display: flex !important;
-  flex-wrap: wrap;
-  row-gap: 2rem;
-  padding: 20px;
-  justify-content: space-around;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
 }
 .circle {
   position: absolute;
@@ -96,9 +90,42 @@
     display: none;
   }
 }
-/* @media (max-width:1345) {
-  .cat-image{
-    width: auto;
+/* Home 3
+ */
+@media (max-width: 768px) {
+  .dps-image {
+    display: none;
   }
-  
-} */
+  .header-div3 {
+    font-size: 1.3rem;
+  }
+  .nd-head {
+    font-size: 1.3rem;
+  }
+  .heading {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 768px) {
+  .heading {
+    font-size: 3rem;
+  }
+
+  .mid-para {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .heading {
+    font-size: 2rem;
+  }
+
+  .mid-para {
+    font-size: 0.9rem;
+  }
+
+  .body-btn-info {
+    font-size: 1rem;
+  }
+}
