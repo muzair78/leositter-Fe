@@ -12,7 +12,10 @@ const LandingPage = () => {
   return (
     <>
       <Navbar />
+      <Home1 />
+      <Home3 />
       <Home4 />
+      <Home2 />
       <Footer />
     </>
   );
