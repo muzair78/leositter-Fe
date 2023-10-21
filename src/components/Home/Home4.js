@@ -25,7 +25,7 @@ const Home4 = () => {
       <div className="services-cards">
         <Row justify={"space-between"}>
           {" "}
-          <Col>
+          <Col lg={3} md={8} sm={24} xs={24}>
             {" "}
             <div className="card">
               <div className="circle">
@@ -45,7 +45,7 @@ const Home4 = () => {
               </div>
             </div>
           </Col>
-          <Col>
+          <Col lg={3} md={8} sm={24} xs={24}>
             {" "}
             <div className="card">
               <div className="circle">
@@ -65,7 +65,7 @@ const Home4 = () => {
               </div>
             </div>
           </Col>
-          <Col>
+          <Col lg={3} md={8} sm={24} xs={24}>
             {" "}
             <div className="card">
               <div className="circle">
@@ -85,7 +85,7 @@ const Home4 = () => {
               </div>
             </div>
           </Col>
-          <Col>
+          <Col lg={3} md={8} sm={24} xs={24}>
             {" "}
             <div className="card">
               <div className="circle">
@@ -105,7 +105,7 @@ const Home4 = () => {
               </div>
             </div>{" "}
           </Col>
-          <Col>
+          <Col lg={3} md={8} sm={24} xs={24}>
             {" "}
             <div className="card">
               <div className="circle">
@@ -125,7 +125,7 @@ const Home4 = () => {
               </div>
             </div>{" "}
           </Col>
-          <Col>
+          <Col lg={3} md={8} sm={24} xs={24}>
             {" "}
             <div className="card">
               <div className="circle">

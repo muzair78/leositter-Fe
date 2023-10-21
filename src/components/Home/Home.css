@@ -43,7 +43,6 @@
 .card {
   display: flex !important;
   height: 10rem;
-  width: 12rem;
   justify-content: center;
   align-items: center;
   flex-direction: column !important;
@@ -55,7 +54,8 @@
   margin-top: 3rem;
 }
 .services-cards {
-  margin-left: 2rem;
+  display: flex;
+
   padding: 2rem;
 }
 .circle {
