@@ -56,8 +56,8 @@ const Message = () => {
       setId(_id);
       fetchMessages(_id);
     } else {
-      fetchMessages(userId);
       setId(userId);
+      fetchMessages(userId);
     }
     fetchConvers();
   }, []);
