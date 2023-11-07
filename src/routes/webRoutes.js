@@ -12,6 +12,7 @@ import Login from "../screen/Login/Login";
 import Nearme from "../screen/Sitters-near-me/Nearme";
 import Takerprofile from "../screen/Caretakerpages/Takerprofile";
 import Work from "../screen/Workingpage/Work";
+import Message from "../components/Message/Message";
 
 const WebRoutes = () => {
   return (
@@ -56,6 +57,7 @@ const WebRoutes = () => {
               </ProtectedRoutes>
             }
           />
+          <Route path="/inbox" element={<Message />} />
         </Routes>
       </BrowserRouter>
     </>

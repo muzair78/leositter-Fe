@@ -12,7 +12,7 @@ const Home2 = () => {
         style={{
           width: "4rem",
           fontWeight: "bold",
-          marginTop: "8rem",
+          marginTop: "4rem",
           color: "green",
         }}
       />

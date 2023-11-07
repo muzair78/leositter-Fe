@@ -17,7 +17,7 @@ const Home4 = () => {
         style={{
           width: "5rem",
           fontWeight: "bold",
-          marginTop: "8rem",
+          marginTop: "3rem",
           color: "green",
         }}
       />

@@ -1,5 +1,5 @@
 // CaretakerLanding.js
-import { Card } from "antd";
+import { Card, Col, Row } from "antd";
 import React, { useEffect, useState } from "react";
 import cardimg from "../../assets/shaheen-afridi.avif";
 import "./care.css";
@@ -133,7 +133,6 @@ const CaretakerLanding = () => {
     const value = e.target.value;
     setUserData({ ...UserData, [name]: value });
   };
-
   useEffect(() => {
     FetchData();
     FetchUserData();
@@ -262,26 +261,31 @@ const CaretakerLanding = () => {
             const { _id, name, Pservice } = cUser;
             return (
               <NavLink
-                to={`/caretaker/caretakerdata/${_id}`}
+                to={{
+                  pathname: `/caretaker/caretakerdata/${_id}`,
+                }}
                 className="card-link"
-                key={index}
               >
-                <div className="container">
-                  <img src={cardimg} className="card-img" alt={name} />
-                  <div
-                    style={{
-                      fontWeight: "bold",
-                      fontSize: "20px",
-                      marginTop: "1rem",
-                    }}
-                  >
-                    {name}
-                  </div>
-                  <div>{Pservice}</div>
-                  <div>
-                    <Rate disabled defaultValue={6} />
-                  </div>
-                </div>
+                <Row justify={"center"}>
+                  <Col sm={24} md={6} lg={6}>
+                    <div className="container">
+                      <img src={cardimg} className="card-img" alt={name} />
+                      <div
+                        style={{
+                          fontWeight: "bold",
+                          fontSize: "20px",
+                          marginTop: "1rem",
+                        }}
+                      >
+                        {name}
+                      </div>
+                      <div>{Pservice}</div>
+                      <div>
+                        <Rate disabled defaultValue={6} />
+                      </div>
+                    </div>
+                  </Col>
+                </Row>
               </NavLink>
             );
           })

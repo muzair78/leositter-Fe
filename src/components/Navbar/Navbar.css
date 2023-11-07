@@ -1,7 +1,7 @@
 .navbar-items {
-  margin-top: 2rem;
-  padding: 1rem;
-  /* display: inline-flex; */
+  display: flex;
+  justify-content: space-between;
+  padding: 1.2rem;
 }
 
 .navbar-items-part-1 {

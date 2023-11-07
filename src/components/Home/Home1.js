@@ -17,7 +17,7 @@ const Home1 = () => {
       </div>
       <div
         className="mid-para"
-        style={{ marginTop: "2rem", fontSize: "1.3rem" }}
+        style={{ marginTop: "2rem", fontSize: "1.3rem", textAlign: "center" }}
       >
         Over 1,000,000 people use LeoSitter to keep their pets happy and well on
         their days in the office or trips away

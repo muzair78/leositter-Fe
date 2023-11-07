@@ -4,6 +4,7 @@ import { Button, Form, Input, Select, Slider, Card } from "antd";
 import { Checkbox, Col, Row } from "antd";
 import axios from "axios";
 import FormItem from "antd/es/form/FormItem";
+import { NavLink } from "react-router-dom";
 const { Option } = Select;
 
 const layout = {
@@ -132,163 +133,170 @@ const Caregiverprofile = () => {
   };
   const contentList = {
     My_Profile: (
-      <Form
-        {...layout}
-        style={{
-          maxWidth: 600,
-        }}
-        validateMessages={validateMessages}
-        form={form}
-        onFinish={patchData}
-      >
-        <Form.Item
-          name="name"
-          label="Name"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input
-            name="name"
-            value={formData.name}
-            onChange={(e) => updateData(e)}
-          />
-        </Form.Item>
-        <Form.Item
-          name="username"
-          label="Username"
-          rules={[
-            {
-              type: "text",
-            },
-          ]}
-        >
-          <Input
-            name="username"
-            value={formData.username}
-            onChange={(e) => updateData(e)}
-          />
-        </Form.Item>
-        <Form.Item
-          name="phone"
-          label="Phone"
-          rules={[
-            {
-              type: "tel",
-            },
-          ]}
-        >
-          <Input
-            name="phone"
-            value={formData.phone}
-            onChange={(e) => updateData(e)}
-          />
-        </Form.Item>
-
-        <Form.Item
-          name="Pservice"
-          label="Service"
-          value={formData?.Pservice}
-          rules={[
-            {
-              required: true,
-              message: "Please select service",
-            },
-          ]}
-        >
-          <Select
-            placeholder="Select your service"
-            onChange={(value) =>
-              updateData({ target: { name: "Pservice", value } })
-            }
-          >
-            <Option value="Cat Sitter">Cat Sitter</Option>
-            <Option value="Dog Sitter">Dog Sitter</Option>
-            <Option value="Bird Sitter">Bird Sitter</Option>
-          </Select>
-        </Form.Item>
-        <Form.Item name="hourrate" label="Hour_rate">
-          <div>
-            <Slider
-              value={formData?.hourrate}
-              onChange={(value) =>
-                setFormData({ ...formData, hourrate: value })
-              }
-            />
-            <h4 style={{ textAlign: "center" }}>{formData?.hourrate}$/hr</h4>
-          </div>
-        </Form.Item>
-        <Form.Item name="weeklyhours" label="Weekly_Hours">
-          <div>
-            <Slider
-              value={formData?.weeklyhours}
-              onChange={(value) =>
-                setFormData({ ...formData, weeklyhours: value })
-              }
-            />
-            <h4 style={{ textAlign: "center" }}>{formData?.weeklyhours}hr</h4>
-          </div>
-        </Form.Item>
-        <FormItem name="available" label="Available">
-          <Checkbox.Group
-            style={{ width: "100%" }}
-            value={formData?.available}
-            onChange={(value) => setFormData({ ...formData, available: value })}
-          >
-            <Row style={{ height: "10rem" }}>
-              <Col span={8}>
-                <Checkbox value="Monday">Monday</Checkbox>
-              </Col>
-              <Col span={8}>
-                <Checkbox value="Tuesday">Tuesday</Checkbox>
-              </Col>
-              <Col span={8}>
-                <Checkbox value="Wednesday">Wednesday</Checkbox>
-              </Col>
-              <Col span={8}>
-                <Checkbox value="Thursday">Thursday</Checkbox>
-              </Col>
-              <Col span={8}>
-                <Checkbox value="Friday">Friday</Checkbox>
-              </Col>
-              <Col span={8}>
-                <Checkbox value="Saturday">Saturday</Checkbox>
-              </Col>
-              <Col span={8}>
-                <Checkbox value="Sunday">Sunday</Checkbox>
-              </Col>
-            </Row>
-          </Checkbox.Group>
-        </FormItem>
-        <Form.Item
-          name="about"
-          label="About"
-          rules={[
-            {
-              type: "text",
-            },
-          ]}
-        >
-          <Input.TextArea
-            name={"about"}
-            value={formData?.about}
-            onChange={(e) => updateData(e)}
-          />
-        </Form.Item>
-
-        <Form.Item
-          wrapperCol={{
-            ...layout.wrapperCol,
-            offset: 8,
+      <>
+        <Button type="primary">
+          <NavLink to={"/inbox"}>Inbox</NavLink>
+        </Button>
+        <Form
+          {...layout}
+          style={{
+            maxWidth: 600,
           }}
+          validateMessages={validateMessages}
+          form={form}
+          onFinish={patchData}
         >
-          <Button type="primary" htmlType="submit" onClick={patchData}>
-            Update
-          </Button>
-        </Form.Item>
-      </Form>
+          <Form.Item
+            name="name"
+            label="Name"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Input
+              name="name"
+              value={formData.name}
+              onChange={(e) => updateData(e)}
+            />
+          </Form.Item>
+          <Form.Item
+            name="username"
+            label="Username"
+            rules={[
+              {
+                type: "text",
+              },
+            ]}
+          >
+            <Input
+              name="username"
+              value={formData.username}
+              onChange={(e) => updateData(e)}
+            />
+          </Form.Item>
+          <Form.Item
+            name="phone"
+            label="Phone"
+            rules={[
+              {
+                type: "tel",
+              },
+            ]}
+          >
+            <Input
+              name="phone"
+              value={formData.phone}
+              onChange={(e) => updateData(e)}
+            />
+          </Form.Item>
+
+          <Form.Item
+            name="Pservice"
+            label="Service"
+            value={formData?.Pservice}
+            rules={[
+              {
+                required: true,
+                message: "Please select service",
+              },
+            ]}
+          >
+            <Select
+              placeholder="Select your service"
+              onChange={(value) =>
+                updateData({ target: { name: "Pservice", value } })
+              }
+            >
+              <Option value="Cat Sitter">Cat Sitter</Option>
+              <Option value="Dog Sitter">Dog Sitter</Option>
+              <Option value="Bird Sitter">Bird Sitter</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name="hourrate" label="Hour_rate">
+            <div>
+              <Slider
+                value={formData?.hourrate}
+                onChange={(value) =>
+                  setFormData({ ...formData, hourrate: value })
+                }
+              />
+              <h4 style={{ textAlign: "center" }}>{formData?.hourrate}$/hr</h4>
+            </div>
+          </Form.Item>
+          <Form.Item name="weeklyhours" label="Weekly_Hours">
+            <div>
+              <Slider
+                value={formData?.weeklyhours}
+                onChange={(value) =>
+                  setFormData({ ...formData, weeklyhours: value })
+                }
+              />
+              <h4 style={{ textAlign: "center" }}>{formData?.weeklyhours}hr</h4>
+            </div>
+          </Form.Item>
+          <FormItem name="available" label="Available">
+            <Checkbox.Group
+              style={{ width: "100%" }}
+              value={formData?.available}
+              onChange={(value) =>
+                setFormData({ ...formData, available: value })
+              }
+            >
+              <Row style={{ height: "10rem" }}>
+                <Col span={8}>
+                  <Checkbox value="Monday">Monday</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Tuesday">Tuesday</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Wednesday">Wednesday</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Thursday">Thursday</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Friday">Friday</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Saturday">Saturday</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Sunday">Sunday</Checkbox>
+                </Col>
+              </Row>
+            </Checkbox.Group>
+          </FormItem>
+          <Form.Item
+            name="about"
+            label="About"
+            rules={[
+              {
+                type: "text",
+              },
+            ]}
+          >
+            <Input.TextArea
+              name={"about"}
+              value={formData?.about}
+              onChange={(e) => updateData(e)}
+            />
+          </Form.Item>
+
+          <Form.Item
+            wrapperCol={{
+              ...layout.wrapperCol,
+              offset: 8,
+            }}
+          >
+            <Button type="primary" htmlType="submit" onClick={patchData}>
+              Update
+            </Button>
+          </Form.Item>
+        </Form>
+      </>
     ),
     password: (
       <Form
@@ -376,16 +384,23 @@ const Caregiverprofile = () => {
 
   return (
     <>
-      <Card
-        style={{
-          width: "100%",
-        }}
-        tabList={tabList}
-        activeTabKey={activeTabKey1}
-        onTabChange={onTab1Change}
-      >
-        {contentList[activeTabKey1]}
-      </Card>
+      <Row>
+        <Col xs={24}>
+          {" "}
+          <Card
+            style={{
+              width: "100%",
+              padding: "2rem",
+              margin: "0px",
+            }}
+            tabList={tabList}
+            activeTabKey={activeTabKey1}
+            onTabChange={onTab1Change}
+          >
+            {contentList[activeTabKey1]}
+          </Card>
+        </Col>
+      </Row>
     </>
   );
 };

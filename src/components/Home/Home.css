@@ -10,10 +10,10 @@
   flex-direction: row;
   justify-items: end;
 }
-
 .page-3-main {
   display: flex;
   padding: 2rem;
+  gap: 3rem;
 }
 .header-div3 {
   text-align: center;

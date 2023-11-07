@@ -1,9 +1,10 @@
 import { React } from "react";
 import "../Home/Home.css";
+import { useState } from "react";
 import { FaCat } from "react-icons/fa";
 import "./Navbar.css";
-import { NavLink, useNavigate } from "react-router-dom";
-import { Button, Select } from "antd";
+import { Form, NavLink, useNavigate } from "react-router-dom";
+import { Button, Select, Modal, Input } from "antd";
 import profilePhoto from "../../assets/Naseem-Shah.webp";
 
 const Navbar = ({ user }) => {
@@ -15,9 +16,23 @@ const Navbar = ({ user }) => {
     localStorage.clear();
     navigate("/");
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <>
+      <Modal title="Basic Modal" open={isModalOpen} onCancel={handleCancel}>
+        {" "}
+      </Modal>
+      ;
       <div>
         <nav className="navbar-items">
           <div>
@@ -33,7 +48,6 @@ const Navbar = ({ user }) => {
           <div>
             <div
               style={{
-                marginTop: "-2.5rem",
                 marginRight: "2rem",
                 display: "flex",
                 justifyContent: "end",
@@ -52,9 +66,12 @@ const Navbar = ({ user }) => {
               />
               {user ? (
                 <>
-                  <NavLink className={"login-btn"} onClick={logout} to={"/"}>
-                    Logout
-                  </NavLink>
+                  <Button type="primary" danger>
+                    {" "}
+                    <NavLink onClick={logout} to={"/"}>
+                      Logout
+                    </NavLink>
+                  </Button>
                   <div className={"profile-btn"}>
                     <img
                       src={profilePhoto}

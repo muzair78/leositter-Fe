@@ -5,13 +5,13 @@ import { Col, Row } from "antd";
 const Home3 = () => {
   return (
     <>
-      <Row>
+      <Row justify={"space-between"}>
         {" "}
         <hr
           style={{
             width: "5rem",
             fontWeight: "bold",
-            marginTop: "8rem",
+            marginTop: "4rem",
             color: "green",
           }}
         />
@@ -20,7 +20,7 @@ const Home3 = () => {
             The #1 way to hire a professional pet sitter
           </h3>
           <div className="page-3-main">
-            <Col md={24} lg={12} sm={24}>
+            <Col md={24} lg={11} sm={24}>
               <div className="leftDiv">
                 <h3>Trustworthy, local pet sitters</h3>
                 <p>
@@ -52,7 +52,7 @@ const Home3 = () => {
                   className="dps-image"
                   alt="newpic"
                   style={{
-                    height: "auto",
+                    height: "25rem",
                     width: "100%",
                   }}
                 />

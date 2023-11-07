@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
 import profilepic from "../../assets/Naseem-Shah.webp";
 import { MdOutlineGppGood } from "react-icons/md";
 import { FcLike } from "react-icons/fc";
 import { FaUserGraduate } from "react-icons/fa";
-import { Navigate } from "react-router-dom";
+import { AiTwotoneMessage } from "react-icons/ai";
 
 const Caretakerdata = () => {
   const [likeBtn, setlikeBtn] = useState();
   const [state, setState] = useState([]);
+  const location = useLocation();
   const navigate = useNavigate();
-  const { _id } = useParams();
+  // const { _id } = useParams();
   const user = localStorage.getItem("user");
   const JSONData = JSON.parse(user);
   const service = JSONData.service;
-  console.log(service);
+  const { _id } = useParams();
 
   const fetchData = () => {
     const URL = `http://localhost:4000/petSitter/${_id}`;
@@ -33,6 +34,14 @@ const Caretakerdata = () => {
   const handleCardClick = (userId) => {
     navigate(`/caretaker/caretakerdata/${userId}`);
   };
+  const navigateToInbox = () => {
+    navigate("/inbox", {
+      state: {
+        _id: _id,
+      },
+    });
+  };
+
   useEffect(() => {
     fetchData();
     fetchRecommendedUsers();
@@ -85,7 +94,9 @@ const Caretakerdata = () => {
               </div>
             </div>
             <div className="end-icons">
-              <FcLike style={{ fontSize: "1.5rem" }} />
+              <button onClick={navigateToInbox}>
+                <AiTwotoneMessage style={{ fontSize: "1.8rem" }} />
+              </button>
             </div>
           </div>
           <div

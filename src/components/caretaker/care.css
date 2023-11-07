@@ -7,8 +7,9 @@
 .container {
   display: flex;
   flex-direction: column;
+
   float: left;
-  width: 13%;
+  /* width: 20%; */
   padding: 2rem;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
