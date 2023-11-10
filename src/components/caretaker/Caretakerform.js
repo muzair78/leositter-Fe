@@ -16,7 +16,7 @@ const Caretakerform = () => {
 
   const onFinish = (values) => {
     // setFormValues(values);
-    const URL = "http://localhost:4000/joinnow/caregiver";
+    const URL = "http://13.235.24.24:4000/joinnow/caregiver";
     axios
       .post(URL, values)
       .then((res) => {

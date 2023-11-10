@@ -31,7 +31,7 @@ const Caregiverform = () => {
     value = e.target.value;
     setUser({ ...user, [name]: value });
   };
-  const URL = "http://localhost:4000/signup";
+  const URL = "http://13.235.24.24:4000/signup";
   const fetchUser = (e) => {
     e.preventDefault();
     if (

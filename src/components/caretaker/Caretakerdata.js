@@ -21,7 +21,7 @@ const Caretakerdata = () => {
   const { _id } = useParams();
 
   const fetchData = () => {
-    const URL = `http://localhost:4000/petSitter/${_id}`;
+    const URL = `http://13.235.24.24:4000/petSitter/${_id}`;
     axios.get(URL).then((res) => {
       setlikeBtn(res.data.findUser);
       setName(res.data.findUser.name);
@@ -29,7 +29,7 @@ const Caretakerdata = () => {
     });
   };
   const fetchRecommendedUsers = () => {
-    const recommendedURL = `http://localhost:4000/caretaker/caretakerdata/people/${service}`;
+    const recommendedURL = `http://13.235.24.24:4000/caretaker/caretakerdata/people/${service}`;
     axios.get(recommendedURL).then((res) => {
       setState(res.data.findSitter);
     });

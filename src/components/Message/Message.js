@@ -21,7 +21,7 @@ const Message = () => {
 
   const sendMessage = async (_id) => {
     try {
-      const URL = `http://localhost:4000/send-messages/${userId}/${_id}`;
+      const URL = `http://13.235.24.24:4000/send-messages/${userId}/${_id}`;
       const res = await axios.post(URL, { messages });
       if (messages === "" || messages === undefined || messages === null) {
         return;
@@ -36,7 +36,7 @@ const Message = () => {
   };
   const fetchMessages = async (_id) => {
     try {
-      const URL = `http://localhost:4000/getmessage/${userId}/${_id}`;
+      const URL = `http://13.235.24.24:4000/getmessage/${userId}/${_id}`;
 
       const res = await axios.get(URL);
       setChat(res.data.data);
@@ -46,7 +46,7 @@ const Message = () => {
   };
   const fetchConvers = async () => {
     try {
-      const URL = `http://localhost:4000/fetchConv/${userId}`;
+      const URL = `http://13.235.24.24:4000/fetchConv/${userId}`;
       const res = await axios.get(URL);
 
       setObject(res.data.data);
@@ -77,7 +77,7 @@ const Message = () => {
               <Input
                 style={{
                   borderRadius: "2rem",
-                  height: "2.5rem",
+                  height: "2rem",
                   padding: "1rem",
                 }}
                 placeholder="Search Chat Here"
@@ -100,7 +100,7 @@ const Message = () => {
                             backgroundColor: "white",
                             borderRadius: "0.3rem",
                             marginTop: "0.8rem",
-                            height: "3.6rem",
+                            height: "4rem",
                           }}
                           className="user-message"
                           key={key}
@@ -127,7 +127,15 @@ const Message = () => {
                             >
                               {value.name}
                             </div>
-                            <div style={{ fontWeight: "lighter" }}>
+                            <div
+                              className="limit-words"
+                              style={{
+                                fontWeight: "lighter",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                whiteSpace: "nowrap",
+                              }}
+                            >
                               {lastMessage}
                             </div>
                           </div>
@@ -148,13 +156,12 @@ const Message = () => {
                   display: "flex",
                   gap: "0.4rem",
                   alignItems: "center",
-
                   borderBottom: "1px solid black",
                   boxShadow: "0px 4px 4px -2px rgba(0, 0, 0, 0.1)",
                   border: "none",
                 }}
               >
-                <img src={newimg} />
+                <img src={newimg} alt="abc" />
                 <p style={{ fontSize: "1rem", fontWeight: "bold" }}>
                   {username}
                 </p>
@@ -177,14 +184,20 @@ const Message = () => {
                   ) : (
                     chat.map((val, index) => {
                       const isCurrUser = val.senderId === userId;
-
+                      const dateString = val.created_at;
+                      const date = new Date(dateString);
+                      const simpleTime = date.toLocaleTimeString();
+                      console.log(simpleTime);
                       return (
                         <div
-                          style={{ marginBottom: "0px", paddingBottom: "0px" }}
                           key={index}
                           className={isCurrUser ? "mess-me" : "mess-other"}
                         >
-                          <p>{val.text}</p>
+                          {val.text}
+                          <div style={{ fontSize: "10px", marginTop: "1rem" }}>
+                            {" "}
+                            {simpleTime}{" "}
+                          </div>
                         </div>
                       );
                     })

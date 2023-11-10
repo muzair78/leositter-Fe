@@ -1,7 +1,7 @@
 .inbox {
-  padding: 1rem;
+  padding: 0.5rem;
   border: 1px dashed black;
-  height: 30.5rem;
+  height: 31rem;
   box-shadow: rgba(255, 255, 255, 0.3) 0px 0px 0px 3px;
   border: none;
   background-color: white;
@@ -55,7 +55,14 @@ img {
   max-width: 48%;
   width: auto;
   overflow-wrap: break-word;
-  height: 25%;
+  height: 20%;
+}
+.limit-words {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  max-width: 10em; /* Adjust according to your design */
 }
 .mess-other {
   align-self: flex-start;

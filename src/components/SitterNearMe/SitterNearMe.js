@@ -14,7 +14,7 @@ const SitterNearMe = () => {
 
   const fetchData = async () => {
     try {
-      const URL = `http://localhost:4000/sitters/${type}`;
+      const URL = `http://13.235.24.24:4000/sitters/${type}`;
       const response = await axios.get(URL);
       console.log(response);
       const array = response.data.sitterData;

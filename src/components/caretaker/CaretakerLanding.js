@@ -67,7 +67,7 @@ const CaretakerLanding = () => {
   };
 
   const FetchData = () => {
-    const URL = `http://localhost:4000/caregiver/petSitters/${userService}`;
+    const URL = `http://13.235.24.24:4000/caregiver/petSitters/${userService}`;
     axios
       .get(URL)
       .then((res) => {
@@ -78,14 +78,14 @@ const CaretakerLanding = () => {
       });
   };
   const FetchUserData = () => {
-    const URL = `http://localhost:4000/caretaker-profile/${ID}`;
+    const URL = `http://13.235.24.24:4000/caretaker-profile/${ID}`;
     axios.get(URL).then((res) => {
       setUserData(res.data.profileUser);
       console.log(res);
     });
   };
   const PatchData = () => {
-    const URL = `http://localhost:4000/caretaker-profile/${ID}`;
+    const URL = `http://13.235.24.24:4000/caretaker-profile/${ID}`;
     axios.patch(URL, UserData).then((res) => {
       console.log(res.data.data);
       setUserData(res.data.data);
@@ -104,7 +104,7 @@ const CaretakerLanding = () => {
     });
   };
   const PatchPassword = () => {
-    const URL = `http://localhost:4000/caretaker-profile/password/${ID}`;
+    const URL = `http://13.235.24.24:4000/caretaker-profile/password/${ID}`;
     axios
       .patch(URL, { password: Password }) // Fix the typo here
       .then((res) => {

@@ -169,7 +169,7 @@ const CaregiverAbout = () => {
   console.log(userID);
   const fetchData = (id) => {
     console.log(userID);
-    const URL = `http://localhost:4000/jobForm/${userID}`;
+    const URL = `http://13.235.24.24:4000/jobForm/${userID}`;
     axios({
       method: "patch",
       url: URL, // Use the URL variable instead of hardcoding the URL

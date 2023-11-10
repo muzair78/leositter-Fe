@@ -74,7 +74,7 @@ const Caregiverprofile = () => {
     setPassword({ ...Password, [name]: value });
   };
 
-  const URL = `http://localhost:4000/petsitter-profile/${userData}`;
+  const URL = `http://13.235.24.24:4000/petsitter-profile/${userData}`;
 
   const fetchData = () => {
     axios.get(URL).then((res) => {
@@ -86,7 +86,7 @@ const Caregiverprofile = () => {
   };
 
   const patchData = () => {
-    const URL = `http://localhost:4000/petsitter-profile/${userData}`;
+    const URL = `http://13.235.24.24:4000/petsitter-profile/${userData}`;
     axios
       .patch(URL, formData) // Stringify formData and include headers
       .then((res) => {
@@ -109,7 +109,7 @@ const Caregiverprofile = () => {
       });
   };
   const patchPassword = () => {
-    const URL = `http://localhost:4000/petsitter-profile/password/${userData}`;
+    const URL = `http://13.235.24.24:4000/petsitter-profile/password/${userData}`;
     axios
       .patch(URL, Password)
       .then((res) => {
