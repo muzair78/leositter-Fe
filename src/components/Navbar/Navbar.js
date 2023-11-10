@@ -29,10 +29,6 @@ const Navbar = ({ user }) => {
 
   return (
     <>
-      <Modal title="Basic Modal" open={isModalOpen} onCancel={handleCancel}>
-        {" "}
-      </Modal>
-      ;
       <div>
         <nav className="navbar-items">
           <div>

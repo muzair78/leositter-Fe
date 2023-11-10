@@ -134,9 +134,9 @@ const Caregiverprofile = () => {
   const contentList = {
     My_Profile: (
       <>
-        <Button type="primary">
+        <Button type="primary" danger>
           <NavLink to={"/inbox"}>Inbox</NavLink>
-        </Button>
+        </Button>{" "}
         <Form
           {...layout}
           style={{
@@ -291,7 +291,7 @@ const Caregiverprofile = () => {
               offset: 8,
             }}
           >
-            <Button type="primary" htmlType="submit" onClick={patchData}>
+            <Button type="primary" htmlType="submit" onClick={patchData} danger>
               Update
             </Button>
           </Form.Item>
@@ -370,7 +370,7 @@ const Caregiverprofile = () => {
             span: 16,
           }}
         >
-          <Button type="primary" onClick={patchPassword}>
+          <Button type="primary" onClick={patchPassword} danger>
             Submit
           </Button>
         </Form.Item>
