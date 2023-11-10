@@ -161,7 +161,7 @@ const Message = () => {
                   border: "none",
                 }}
               >
-                <img src={newimg} alt="abc" />
+                <img src={newimg} alt="abc" className="img" />
                 <p style={{ fontSize: "1rem", fontWeight: "bold" }}>
                   {username}
                 </p>
