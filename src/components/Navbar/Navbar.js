@@ -8,23 +8,6 @@ import { Button, Select, Modal, Input, Dropdown, Space } from "antd";
 import profilePhoto from "../../assets/Naseem-Shah.webp";
 import { DownOutlined } from "@ant-design/icons";
 
-const items = [
-  {
-    label: <a href="https://www.antgroup.com">1st menu item</a>,
-    key: "0",
-  },
-  {
-    label: <a href="https://www.aliyun.com">2nd menu item</a>,
-    key: "1",
-  },
-  {
-    type: "divider",
-  },
-  {
-    label: "3rd menu item",
-    key: "3",
-  },
-];
 const Navbar = ({ user }) => {
   const navigate = useNavigate();
   const handleChange = (value, e) => {
@@ -44,7 +27,12 @@ const Navbar = ({ user }) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-
+  const items = [
+    {
+      label: <div onClick={Logout}>Logout</div>,
+      key: "0",
+    },
+  ];
   return (
     <>
       <div>
@@ -86,16 +74,22 @@ const Navbar = ({ user }) => {
                   </Button>
 
                   <div className={"profile-btn"}>
-                    <img
-                      src={profilePhoto}
-                      onClick={Logout}
-                      style={{
-                        width: "3rem",
-                        height: "3rem",
-                        borderRadius: "5rem",
+                    <Dropdown
+                      menu={{
+                        items,
                       }}
-                      alt="Profile"
-                    />
+                      trigger={["click"]}
+                    >
+                      <img
+                        src={profilePhoto}
+                        style={{
+                          width: "3rem",
+                          height: "3rem",
+                          borderRadius: "5rem",
+                        }}
+                        alt="Profile"
+                      />
+                    </Dropdown>
                   </div>
                 </>
               ) : (
