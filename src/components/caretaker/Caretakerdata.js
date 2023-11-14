@@ -6,7 +6,7 @@ import { MdOutlineGppGood } from "react-icons/md";
 import { FcLike } from "react-icons/fc";
 import { FaUserGraduate } from "react-icons/fa";
 import { AiTwotoneMessage } from "react-icons/ai";
-import { Col, Row } from "antd";
+import { Col, Row, Button } from "antd";
 
 const Caretakerdata = () => {
   const [likeBtn, setlikeBtn] = useState();
@@ -109,27 +109,28 @@ const Caretakerdata = () => {
                     </div>
                   </div>
                 </div>
-                <div
+                <Button
                   className="end-icons"
                   onClick={navigateToInbox}
-                  style={{ fontWeight: "bolder" }}
+                  danger
+                  type="primary"
                 >
                   Chat
-                </div>
+                </Button>
               </div>
               <div
                 className="profile-b"
                 style={{ display: "flex", flexDirection: "column", gap: "1px" }}
               >
-                <div style={{ fontSize: "2rem", fontWeight: "bolder" }}>
+                <div style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
                   Experience
                 </div>
                 <p>2 years of experience</p>
-                <h4>Can Help With</h4>
+                <h5>Can Help With</h5>
                 <p></p>
               </div>
               <div className="profile-c">
-                <div style={{ fontSize: "2rem", fontWeight: "bolder" }}>
+                <div style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
                   Service
                 </div>
                 <div>Cat Sitter</div>
@@ -138,22 +139,20 @@ const Caretakerdata = () => {
                 <div>Availability : [{likeBtn?.available},]</div>
               </div>
               <div className="profile-d">
-                <div style={{ fontSize: "2rem", fontWeight: "bolder" }}>
+                <div style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
                   Education
                 </div>
-                <FaUserGraduate
-                  style={{ fontSize: "3rem", marginTop: "1rem" }}
-                />
+
                 <div style={{ fontSize: "1rem" }}>Master in Business</div>
               </div>
               <div className="profile-e">
-                <div style={{ fontSize: "2rem", fontWeight: "bolder" }}>
+                <div style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
                   About
                 </div>
                 <div>{likeBtn?.about}</div>
               </div>
               <div className="profile-f">
-                <div style={{ fontSize: "2rem", fontWeight: "bolder" }}>
+                <div style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
                   Reviews
                 </div>
                 <div>No Reviews Available</div>
@@ -163,8 +162,22 @@ const Caretakerdata = () => {
           <Col>
             {" "}
             <div className="people" style={{ marginTop: "3rem" }}>
-              <h4>People You May Know</h4>
-              <div style={{ display: "flex", flexDirection: "column" }}>
+              <div
+                style={{
+                  width: "12rem",
+                  fontSize: "1.1rem",
+                  fontWeight: "bold",
+                }}
+              >
+                People You May Know
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginTop: "0.4rem",
+                }}
+              >
                 {state.map((cUser, index) => {
                   const { name, Pservice, _id } = cUser;
 
@@ -176,29 +189,22 @@ const Caretakerdata = () => {
                         key={_id}
                         style={{
                           display: "flex",
-                          flexDirection: "row",
-                          padding: "8px",
-                          border: "1px solid black",
-                          border: "none",
-                          marginTop: "1rem",
-                          boxShadow:
-                            "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px",
+                          marginTop: "0.4rem",
                         }}
                       >
                         <img
                           src={profilepic}
                           style={{
-                            width: "3rem",
-                            height: "3rem",
+                            width: "2.8rem",
+                            height: "2.6rem",
                             borderRadius: "5rem",
                           }}
                           alt={`Profile of ${name}`}
                         />
                         <div
                           style={{
-                            marginTop: "1rem",
-                            marginLeft: "1rem",
-                            height: "3rem",
+                            marginLeft: "0.5rem",
+                            marginTop: "0.5rem",
                           }}
                         >
                           {name}

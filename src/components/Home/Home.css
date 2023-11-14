@@ -28,9 +28,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 4rem;
   gap: 2rem;
   padding: 1rem;
+  position: relative; /* Ensure the relative positioning for the pseudo-element */
+}
+.back-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url("../../assets/home-back.jpg");
+  background-size: 110%;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.2; /* Adjust the opacity value as needed */
+  z-index: -1;
 }
 .joining-link {
   color: black;

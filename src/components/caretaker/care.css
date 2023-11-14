@@ -89,9 +89,10 @@
 }
 .people {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  width: 20rem;
-  height: 40rem;
+  width: 15rem;
+  height: auto;
   padding: 1rem;
+  border-radius: 2.2rem;
 }
 .people:hover {
   cursor: pointer;

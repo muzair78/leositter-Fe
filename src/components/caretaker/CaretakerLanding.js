@@ -222,7 +222,7 @@ const CaretakerLanding = () => {
                   offset: 8,
                 }}
               >
-                <Button type="primary" onClick={PatchData}>
+                <Button type="primary" onClick={PatchData} danger>
                   Update
                 </Button>
               </Form.Item>
@@ -250,14 +250,14 @@ const CaretakerLanding = () => {
                   offset: 8,
                 }}
               >
-                <Button type="primary" onClick={PatchPassword}>
+                <Button type="primary" onClick={PatchPassword} danger>
                   Update Password
                 </Button>
               </Form.Item>
             </Form>
           </>
         ) : (
-          <Row gutter={[16, 16]} justify="center">
+          <Row gutter={[16, 16]}>
             {activeTabKey2.map((cUser) => {
               const { _id, name, Pservice } = cUser;
               return (
