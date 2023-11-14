@@ -4,9 +4,27 @@ import { useState } from "react";
 import { FaCat } from "react-icons/fa";
 import "./Navbar.css";
 import { Form, NavLink, useNavigate } from "react-router-dom";
-import { Button, Select, Modal, Input } from "antd";
+import { Button, Select, Modal, Input, Dropdown, Space } from "antd";
 import profilePhoto from "../../assets/Naseem-Shah.webp";
+import { DownOutlined } from "@ant-design/icons";
 
+const items = [
+  {
+    label: <a href="https://www.antgroup.com">1st menu item</a>,
+    key: "0",
+  },
+  {
+    label: <a href="https://www.aliyun.com">2nd menu item</a>,
+    key: "1",
+  },
+  {
+    type: "divider",
+  },
+  {
+    label: "3rd menu item",
+    key: "3",
+  },
+];
 const Navbar = ({ user }) => {
   const navigate = useNavigate();
   const handleChange = (value, e) => {
@@ -34,7 +52,7 @@ const Navbar = ({ user }) => {
           <div>
             <NavLink to={"/"} style={{ textDecoration: "none" }}>
               <h3 className="navbar-logo">
-                <FaCat style={{ fontSize: "3rem" }} />
+                <FaCat style={{ fontSize: "2.2rem" }} />
                 LeoSitter
               </h3>
             </NavLink>
@@ -64,18 +82,18 @@ const Navbar = ({ user }) => {
                 <>
                   <Button type="primary" danger>
                     {" "}
-                    <NavLink onClick={logout} to={"/"}>
-                      Logout
-                    </NavLink>
+                    <NavLink to={"/"}></NavLink>
                   </Button>
                   <div className={"profile-btn"}>
                     <img
                       src={profilePhoto}
+                      onClick={logout()}
                       style={{
                         width: "3rem",
                         height: "3rem",
                         borderRadius: "5rem",
                       }}
+                      alt="Profile"
                     />
                   </div>
                 </>

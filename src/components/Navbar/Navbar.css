@@ -1,7 +1,7 @@
 .navbar-items {
   display: flex;
   justify-content: space-between;
-  padding: 1.2rem;
+  padding: 1rem;
 }
 
 .navbar-items-part-1 {
@@ -24,7 +24,7 @@
   margin-left: 20px;
   cursor: pointer;
   margin-bottom: 0px;
-  font-size: 2.5rem;
+  font-size: 2.1rem;
   color: #ff7875;
 }
 
@@ -57,7 +57,7 @@
 
 .navbar-items .ant-select-selector {
   border: 2px solid rgb(97, 97, 97) !important;
-  height: 2.8rem !important;
+  height: 2.2rem !important;
   display: flex !important;
   align-items: center !important;
   width: 250px;

@@ -240,6 +240,7 @@ const CaregiverAbout = () => {
           disabled={currentStep === 5}
           onClick={handleNext}
           className="nextButton"
+          style={{ marginLeft: "1rem" }}
         >
           Next
         </button>

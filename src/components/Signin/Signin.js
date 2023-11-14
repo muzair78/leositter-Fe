@@ -36,6 +36,7 @@ const Signin = () => {
     axios
       .post(URL, user)
       .then((res) => {
+        console.log(res.data.data.user);
         console.log(res.data.data.user.role);
 
         switch (res.data.data.user.role) {

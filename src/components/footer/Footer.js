@@ -101,10 +101,7 @@ const Footer = () => {
               <p>&copy; 2023 Something. All rights reserved.</p>
 
               <div class="legal__links">
-                <span>
-                  Made with <span class="heart">Rana Uzair</span> remotely from
-                  PK
-                </span>
+                <span></span>
               </div>
             </div>
           </footer>
