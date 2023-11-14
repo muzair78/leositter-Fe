@@ -3,7 +3,9 @@
   width: 10rem;
   border-radius: 1rem;
 }
-
+.end-icons:hover {
+  cursor: pointer;
+}
 .container {
   display: flex;
   flex-direction: column;

@@ -30,7 +30,7 @@ const Navbar = ({ user }) => {
   const handleChange = (value, e) => {
     navigate(`/sitters/${e.value}`);
   };
-  const logout = () => {
+  const Logout = () => {
     localStorage.clear();
     navigate("/");
   };
@@ -82,12 +82,13 @@ const Navbar = ({ user }) => {
                 <>
                   <Button type="primary" danger>
                     {" "}
-                    <NavLink to={"/"}></NavLink>
+                    <NavLink to={"/inbox"}>inbox</NavLink>
                   </Button>
+
                   <div className={"profile-btn"}>
                     <img
                       src={profilePhoto}
-                      onClick={logout()}
+                      onClick={Logout}
                       style={{
                         width: "3rem",
                         height: "3rem",

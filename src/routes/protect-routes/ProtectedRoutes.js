@@ -5,7 +5,7 @@ function ProtectedRoutes({ children }) {
   const user = JSON.parse(localStorage.getItem("user"));
 
   if (!user) {
-    return <Navigate to="/apply-for-job" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return children;

@@ -109,10 +109,12 @@ const Caretakerdata = () => {
                     </div>
                   </div>
                 </div>
-                <div className="end-icons">
-                  <button onClick={navigateToInbox}>
-                    <AiTwotoneMessage style={{ fontSize: "1.8rem" }} />
-                  </button>
+                <div
+                  className="end-icons"
+                  onClick={navigateToInbox}
+                  style={{ fontWeight: "bolder" }}
+                >
+                  Chat
                 </div>
               </div>
               <div

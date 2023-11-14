@@ -54,8 +54,8 @@ const Caregiverprofile = () => {
     password: "",
     available: "",
   });
-  const user = JSON.parse(localStorage.getItem("user"));
-  const userData = JSON.parse(localStorage.getItem("user"))._id;
+
+  const userData = JSON.parse(localStorage.getItem("user"))?._id;
 
   const updateData = (e) => {
     console.log("Updating data...");
@@ -73,10 +73,8 @@ const Caregiverprofile = () => {
     const value = e.target.value;
     setPassword({ ...Password, [name]: value });
   };
-
-  const URL = `http://13.235.24.24:4000/petsitter-profile/${userData}`;
-
   const fetchData = () => {
+    const URL = `http://13.235.24.24:4000/petsitter-profile/${userData}`;
     axios.get(URL).then((res) => {
       const responseData = res.data.checkUser[0];
       setFormData(responseData);
@@ -84,7 +82,6 @@ const Caregiverprofile = () => {
       console.log();
     });
   };
-
   const patchData = () => {
     const URL = `http://13.235.24.24:4000/petsitter-profile/${userData}`;
     axios
@@ -134,9 +131,6 @@ const Caregiverprofile = () => {
   const contentList = {
     My_Profile: (
       <>
-        <Button type="primary" danger>
-          <NavLink to={"/inbox"}>Inbox</NavLink>
-        </Button>{" "}
         <Form
           {...layout}
           style={{

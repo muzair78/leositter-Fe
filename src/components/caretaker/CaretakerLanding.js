@@ -257,17 +257,17 @@ const CaretakerLanding = () => {
             </Form>
           </>
         ) : (
-          activeTabKey2.map((cUser, index) => {
-            const { _id, name, Pservice } = cUser;
-            return (
-              <NavLink
-                to={{
-                  pathname: `/caretaker/caretakerdata/${_id}`,
-                }}
-                className="card-link"
-              >
-                <Row justify={"center"}>
-                  <Col sm={24} md={6} lg={6}>
+          <Row gutter={[16, 16]} justify="center">
+            {activeTabKey2.map((cUser) => {
+              const { _id, name, Pservice } = cUser;
+              return (
+                <Col key={_id} sm={24} md={6} lg={6}>
+                  <NavLink
+                    to={{
+                      pathname: `/caretaker/caretakerdata/${_id}`,
+                    }}
+                    className="card-link"
+                  >
                     <div className="container">
                       <img src={cardimg} className="card-img" alt={name} />
                       <div
@@ -284,11 +284,11 @@ const CaretakerLanding = () => {
                         <Rate disabled defaultValue={6} />
                       </div>
                     </div>
-                  </Col>
-                </Row>
-              </NavLink>
-            );
-          })
+                  </NavLink>
+                </Col>
+              );
+            })}
+          </Row>
         )}
       </Card>
     </>

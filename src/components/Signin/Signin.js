@@ -36,20 +36,9 @@ const Signin = () => {
     axios
       .post(URL, user)
       .then((res) => {
-        console.log(res.data.data.user);
-        console.log(res.data.data.user.role);
-
-        switch (res.data.data.user.role) {
-          case "petsitter":
-            navigate("/petsitter-profile");
-            break;
-          case "caregiver":
-            navigate("/care-taker");
-            break;
-          default:
-        }
-
         if (res.status === 200) {
+          console.log(res.data.data.user);
+          localStorage.setItem("user", JSON.stringify(res.data.data.user));
           <ToastContainer />;
           toast.success("Singin sucessfully", {
             position: "top-right",
@@ -61,12 +50,20 @@ const Signin = () => {
             progress: undefined,
             theme: "light",
           });
-
+          // navigate("/care-taker");
+          switch (res.data.data.user.role) {
+            case "petsitter":
+              navigate("/petsitter-profile");
+              break;
+            case "caregiver":
+              navigate("/care-taker");
+              break;
+            default:
+          }
           // setUser({
           //   email: "",
           //   password: "",
           // });
-          localStorage.setItem("user", JSON.stringify(res.data.data.user));
         }
       })
       .catch(() => {

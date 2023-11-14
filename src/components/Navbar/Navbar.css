@@ -236,3 +236,7 @@
     display: none;
   }
 }
+
+.profile-btn:hover {
+  cursor: pointer;
+}
