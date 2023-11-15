@@ -12,8 +12,7 @@ import Login from "../screen/Login/Login";
 import Nearme from "../screen/Sitters-near-me/Nearme";
 import Takerprofile from "../screen/Caretakerpages/Takerprofile";
 import Work from "../screen/Workingpage/Work";
-import Message from "../components/Message/Message";
-
+import Inbox from "../screen/Inbox/Inbox";
 const WebRoutes = () => {
   return (
     <>
@@ -48,7 +47,14 @@ const WebRoutes = () => {
               </ProtectedRoutes>
             }
           />
-          <Route path="/caretaker/caretakerdata/:_id" element={<Takerdata />} />
+          <Route
+            path="/caretaker/caretakerdata/:_id"
+            element={
+              <ProtectedRoutes>
+                <Takerdata />
+              </ProtectedRoutes>
+            }
+          />
           <Route
             path="/petsitter-profile"
             element={
@@ -57,7 +63,14 @@ const WebRoutes = () => {
               </ProtectedRoutes>
             }
           />
-          <Route path="/inbox" element={<Message />} />
+          <Route
+            path="/inbox"
+            element={
+              <ProtectedRoutes>
+                <Inbox />
+              </ProtectedRoutes>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>

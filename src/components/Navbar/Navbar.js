@@ -75,31 +75,21 @@ const Navbar = ({ user }) => {
   return (
     <>
       <nav className={`navbar ${menuOpen ? "open" : ""}`}>
-        <div className="logo">
+        <Link className="logo" to={"/"}>
           <FaCat style={{ fontSize: "2.2rem" }} />
           LeoSitter
-        </div>
+        </Link>
         <div className="navbar-toggle" onClick={toggleMenu}>
           {menuOpen ? <CloseOutlined /> : <MenuOutlined />}
         </div>
         <ul className={`navbar-menu ${menuOpen ? "open" : "close"}`}>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
+          <li></li>
 
-          {user ? (
-            <></>
-          ) : (
-            <>
-              <li>
-                <Link to={"/signin"}>Login</Link>
-              </li>
-            </>
-          )}
+          {user ? <></> : <></>}
           <li>
             <Select
               defaultValue={"Select Sitter"}
-              style={{ width: 120 }}
+              style={{ width: 160 }}
               onChange={handleChange}
               options={[
                 { value: "Bird Sitter", label: "Bird Sitter" },
@@ -131,30 +121,44 @@ const Navbar = ({ user }) => {
         </ul>
 
         {user ? (
-          <div className={"profile-btn"}>
-            <Dropdown
-              menu={{
-                items,
-              }}
-              trigger={["click"]}
-            >
-              <img
-                src={profilePhoto}
-                style={{
-                  width: "3rem",
-                  height: "3rem",
-                  borderRadius: "5rem",
+          <>
+            <Link to={"/inbox"}>
+              <Button type="primary" danger>
+                Inbox
+              </Button>
+            </Link>
+            <div className={"profile-btn"}>
+              <Dropdown
+                menu={{
+                  items,
                 }}
-                alt="Profile"
-              />
-            </Dropdown>
-          </div>
+                trigger={["click"]}
+              >
+                <img
+                  src={profilePhoto}
+                  style={{
+                    width: "3rem",
+                    height: "3rem",
+                    borderRadius: "5rem",
+                  }}
+                  alt="Profile"
+                />
+              </Dropdown>
+            </div>
+          </>
         ) : (
           <>
             <div className="navbar-register-btn">
               <button
                 className="register-btn"
+                onClick={() => navigate("/signin")}
+              >
+                Login
+              </button>
+              <button
+                className="register-btn"
                 onClick={() => navigate("/joinnow")}
+                style={{ marginLeft: "1rem" }}
               >
                 Register
               </button>

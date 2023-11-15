@@ -69,7 +69,6 @@ const Message = () => {
 
   return (
     <>
-      <Navbar user={user} />
       <Row justify={"space-between"} style={{ padding: "1rem 1rem 0px 1rem" }}>
         <Col style={{ height: "100%" }} lg={6} md={9} sm={24} xs={24}>
           <div className="inbox">
