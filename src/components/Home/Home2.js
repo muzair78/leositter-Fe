@@ -2,7 +2,7 @@ import React from "react";
 import cat from "../../assets/cat.jpg";
 import "./Home.css";
 import { NavLink } from "react-router-dom";
-import { Col, Row } from "antd";
+import { Button, Col, Row } from "antd";
 
 const Home2 = () => {
   return (
@@ -62,9 +62,9 @@ const Home2 = () => {
 
                 <NavLink to={"/caretaker-signup"}>
                   {" "}
-                  <button className="body-btn-info">
+                  <Button className="body-btn-info" danger type="primary">
                     Find a caregiver now
-                  </button>
+                  </Button>
                 </NavLink>
               </div>
             </Col>

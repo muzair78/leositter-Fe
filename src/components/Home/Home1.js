@@ -1,4 +1,4 @@
-import { Col, Row } from "antd";
+import { Col, Row, Button } from "antd";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
@@ -32,7 +32,9 @@ const Home1 = () => {
         </NavLink>
         <NavLink to={"/caregiver-signup"}>
           {" "}
-          <button className="body-btn-info">Find a caregiver now</button>
+          <Button className="body-btn-info" danger type="primary">
+            Find a caregiver now
+          </Button>
         </NavLink>
       </div>
     </div>

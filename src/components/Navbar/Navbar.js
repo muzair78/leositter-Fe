@@ -1,111 +1,167 @@
-import { React } from "react";
-import "../Home/Home.css";
-import { useState } from "react";
-import { FaCat } from "react-icons/fa";
+// Navbar.js
+import React, { useState } from "react";
 import "./Navbar.css";
-import { Form, NavLink, useNavigate } from "react-router-dom";
-import { Button, Select, Modal, Input, Dropdown, Space } from "antd";
+import { Avatar, Dropdown, Menu, Input, Button, Select } from "antd";
+import {
+  SearchOutlined,
+  DownOutlined,
+  MenuOutlined,
+  CloseOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { Form, NavLink, useNavigate, Link } from "react-router-dom";
+import { AiFillPlusCircle } from "react-icons/ai";
+import { BiCopy } from "react-icons/bi";
+import { FaCat } from "react-icons/fa";
 import profilePhoto from "../../assets/Naseem-Shah.webp";
-import { DownOutlined } from "@ant-design/icons";
-
 const Navbar = ({ user }) => {
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    window.location.href = "/auth";
+  };
+
+  const menu = (
+    <Menu>
+      {/* <Menu.Item
+        key="profile"
+        onClick={goToProfile}
+      
+      >
+        Profile & Settings
+      </Menu.Item> */}
+      <Menu.Item key="logout" onClick={handleLogout}>
+        Logout
+      </Menu.Item>
+    </Menu>
+  );
+
+  const studySetMenu = (
+    <Menu>
+      <Menu.Item
+        key="logout"
+        onClick={() => navigate("/study-sets/create")}
+        icon={<BiCopy size={20} />}
+      >
+        Study sets
+      </Menu.Item>
+    </Menu>
+  );
   const handleChange = (value, e) => {
     navigate(`/sitters/${e.value}`);
   };
-  const Logout = () => {
+  const logout = () => {
     localStorage.clear();
     navigate("/");
   };
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
   const items = [
     {
-      label: <div onClick={Logout}>Logout</div>,
-      key: "0",
+      key: "1",
+      label: "Logout",
+      onClick: logout,
+    },
+    {
+      key: "2",
+      label: "null",
     },
   ];
   return (
     <>
-      <div>
-        <nav className="navbar-items">
-          <div>
-            <NavLink to={"/"} style={{ textDecoration: "none" }}>
-              <h3 className="navbar-logo">
-                <FaCat style={{ fontSize: "2.2rem" }} />
-                LeoSitter
-              </h3>
-            </NavLink>
-            <div className="menu-icon"></div>
-          </div>
+      <nav className={`navbar ${menuOpen ? "open" : ""}`}>
+        <div className="logo">
+          <FaCat style={{ fontSize: "2.2rem" }} />
+          LeoSitter
+        </div>
+        <div className="navbar-toggle" onClick={toggleMenu}>
+          {menuOpen ? <CloseOutlined /> : <MenuOutlined />}
+        </div>
+        <ul className={`navbar-menu ${menuOpen ? "open" : "close"}`}>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
 
-          <div>
-            <div
-              style={{
-                marginRight: "2rem",
-                display: "flex",
-                justifyContent: "end",
-                gap: "1.2rem",
+          {user ? (
+            <></>
+          ) : (
+            <>
+              <li>
+                <Link to={"/signin"}>Login</Link>
+              </li>
+            </>
+          )}
+          <li>
+            <Select
+              defaultValue={"Select Sitter"}
+              style={{ width: 120 }}
+              onChange={handleChange}
+              options={[
+                { value: "Bird Sitter", label: "Bird Sitter" },
+                { value: "Dog Sitter", label: "Dog Sitter" },
+                { value: "Cat Sitter", label: "Cat Sitter" },
+              ]}
+            />
+          </li>
+          {user ? (
+            <li className="onMobile">
+              <Dropdown overlay={studySetMenu} trigger={["click"]}>
+                <AiFillPlusCircle
+                  size={38}
+                  color="rgb(15, 97, 134)"
+                  cursor="pointer"
+                />
+              </Dropdown>
+              <Dropdown overlay={menu} trigger={["click"]}>
+                <Avatar
+                  size="large"
+                  style={{ cursor: "pointer" }}
+                  icon={<UserOutlined />}
+                />
+              </Dropdown>
+            </li>
+          ) : (
+            <div></div>
+          )}
+        </ul>
+
+        {user ? (
+          <div className={"profile-btn"}>
+            <Dropdown
+              menu={{
+                items,
               }}
+              trigger={["click"]}
             >
-              <Select
-                defaultValue={"Select Sitter"}
-                style={{ width: 120 }}
-                onChange={handleChange}
-                options={[
-                  { value: "Bird Sitter", label: "Bird Sitter" },
-                  { value: "Dog Sitter", label: "Dog Sitter" },
-                  { value: "Cat Sitter", label: "Cat Sitter" },
-                ]}
+              <img
+                src={profilePhoto}
+                style={{
+                  width: "3rem",
+                  height: "3rem",
+                  borderRadius: "5rem",
+                }}
+                alt="Profile"
               />
-              {user ? (
-                <>
-                  <Button type="primary" danger>
-                    {" "}
-                    <NavLink to={"/inbox"}>inbox</NavLink>
-                  </Button>
-
-                  <div className={"profile-btn"}>
-                    <Dropdown
-                      menu={{
-                        items,
-                      }}
-                      trigger={["click"]}
-                    >
-                      <img
-                        src={profilePhoto}
-                        style={{
-                          width: "3rem",
-                          height: "3rem",
-                          borderRadius: "5rem",
-                        }}
-                        alt="Profile"
-                      />
-                    </Dropdown>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <Button type="primary" danger>
-                    <NavLink to={"/signin"}>Login</NavLink>
-                  </Button>
-                  <Button type="primary" danger>
-                    <NavLink to={"/joinnow"}>Join Now</NavLink>
-                  </Button>
-                </>
-              )}
-            </div>
+            </Dropdown>
           </div>
-        </nav>
-      </div>
+        ) : (
+          <>
+            <div className="navbar-register-btn">
+              <button
+                className="register-btn"
+                onClick={() => navigate("/joinnow")}
+              >
+                Register
+              </button>
+            </div>
+          </>
+        )}
+      </nav>
     </>
   );
 };
