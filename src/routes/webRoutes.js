@@ -1,22 +1,28 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LandingPage from "../screen/LandingPage";
-import ProtectedRoutes from "./protect-routes/ProtectedRoutes";
-import GiverProtected from "./protect-routes/GiverProtected";
-import Takerform from "../screen/Caretakerpages/Takerform";
-import Giverprofile from "../screen/Caregiverpages/Giverprofile";
-import Giverform from "../screen/Caregiverpages/Giverform";
-import Giverdata from "../screen/Caregiverpages/Giverdata";
-import Takerdata from "../screen/Caretakerpages/Takerdata";
-import Login from "../screen/Login/Login";
-import Nearme from "../screen/Sitters-near-me/Nearme";
-import Takerprofile from "../screen/Caretakerpages/Takerprofile";
-import Work from "../screen/Workingpage/Work";
-import Inbox from "../screen/Inbox/Inbox";
+const LandingPage = lazy(() => import("../screen/LandingPage"));
+const ProtectedRoutes = lazy(() => import("./protect-routes/ProtectedRoutes"));
+const GiverProtected = lazy(() => import("./protect-routes/GiverProtected"));
+const Takerform = lazy(() => import("../screen/Caretakerpages/Takerform"));
+const Giverprofile = lazy(() =>
+  import("../screen/Caregiverpages/Giverprofile")
+);
+const Giverform = lazy(() => import("../screen/Caregiverpages/Giverform"));
+const Giverdata = lazy(() => import("../screen/Caregiverpages/Giverdata"));
+const Takerdata = lazy(() => import("../screen/Caretakerpages/Takerdata"));
+const Login = lazy(() => import("../screen/Login/Login"));
+const Nearme = lazy(() => import("../screen/Sitters-near-me/Nearme"));
+const Takerprofile = lazy(() =>
+  import("../screen/Caretakerpages/Takerprofile")
+);
+const Work = lazy(() => import("../screen/Workingpage/Work"));
+const Inbox = lazy(() => import("../screen/Inbox/Inbox"));
+const Loader = lazy(() => import("../components/Loader/Loader"));
 const WebRoutes = () => {
   return (
     <>
-      <BrowserRouter>
+      <React.Suspense fallback={<Loader />}>
+        {" "}
         <Routes>
           <Route
             path="/"
@@ -72,7 +78,7 @@ const WebRoutes = () => {
             }
           />
         </Routes>
-      </BrowserRouter>
+      </React.Suspense>
     </>
   );
 };

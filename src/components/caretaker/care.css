@@ -39,10 +39,10 @@
   display: flex;
   flex-direction: row;
   gap: 1.8rem;
-  width: 45rem;
-  height: 12rem;
+  width: auto;
+  height: auto;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  justify-content: center;
+
   padding: 1rem;
   border-radius: 1.5rem;
 }
@@ -50,7 +50,7 @@
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  width: 45rem;
+  width: auto;
   height: 12rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 1.5rem;
@@ -60,28 +60,28 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 45rem;
+  width: auto;
   height: 15rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 1.5rem;
   border-radius: 1.5rem;
 }
 .profile-d {
-  width: 45rem;
+  width: auto;
   height: 10rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 1rem;
   border-radius: 1.5rem;
 }
 .profile-e {
-  width: 45rem;
+  width: auto;
   height: 10rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 1rem;
   border-radius: 1.5rem;
 }
 .profile-f {
-  width: 45rem;
+  width: auto;
   height: 6rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 1rem;
@@ -89,7 +89,7 @@
 }
 .people {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  width: 15rem;
+  width: auto;
   height: auto;
   padding: 1rem;
   border-radius: 2.2rem;

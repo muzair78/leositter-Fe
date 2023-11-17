@@ -1,13 +1,13 @@
 import React from "react";
+import Router from "./routes/index";
 
-import WebRoutes from "./routes/webRoutes";
 import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (
     <>
+      <Router />
       <ToastContainer />
-      <WebRoutes />
     </>
   );
 };

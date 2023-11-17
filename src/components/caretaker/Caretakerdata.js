@@ -55,7 +55,7 @@ const Caretakerdata = () => {
       <div>
         <Row justify={"space-evenly"}>
           {" "}
-          <Col>
+          <Col lg={13} xs={24} md={24}>
             {" "}
             <div
               className="main"
@@ -159,7 +159,7 @@ const Caretakerdata = () => {
               </div>
             </div>{" "}
           </Col>
-          <Col>
+          <Col lg={5} xs={12} md={12}>
             {" "}
             <div className="people" style={{ marginTop: "3rem" }}>
               <div

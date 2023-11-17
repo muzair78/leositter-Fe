@@ -14,20 +14,18 @@ import { AiFillPlusCircle } from "react-icons/ai";
 import { BiCopy } from "react-icons/bi";
 import { FaCat } from "react-icons/fa";
 import profilePhoto from "../../assets/Naseem-Shah.webp";
+
 const Navbar = ({ user }) => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     window.location.href = "/auth";
   };
-
   const menu = (
     <Menu>
       {/* <Menu.Item
@@ -42,7 +40,6 @@ const Navbar = ({ user }) => {
       </Menu.Item>
     </Menu>
   );
-
   const studySetMenu = (
     <Menu>
       <Menu.Item
@@ -83,13 +80,11 @@ const Navbar = ({ user }) => {
           {menuOpen ? <CloseOutlined /> : <MenuOutlined />}
         </div>
         <ul className={`navbar-menu ${menuOpen ? "open" : "close"}`}>
-          <li></li>
-
-          {user ? <></> : <></>}
+          {user ? <></> : null}
           <li>
             <Select
               defaultValue={"Select Sitter"}
-              style={{ width: 160 }}
+              style={{ width: 200 }}
               onChange={handleChange}
               options={[
                 { value: "Bird Sitter", label: "Bird Sitter" },
@@ -100,29 +95,61 @@ const Navbar = ({ user }) => {
           </li>
           {user ? (
             <li className="onMobile">
-              <Dropdown overlay={studySetMenu} trigger={["click"]}>
-                <AiFillPlusCircle
-                  size={38}
-                  color="rgb(15, 97, 134)"
-                  cursor="pointer"
-                />
-              </Dropdown>
-              <Dropdown overlay={menu} trigger={["click"]}>
-                <Avatar
-                  size="large"
-                  style={{ cursor: "pointer" }}
-                  icon={<UserOutlined />}
-                />
-              </Dropdown>
+              <Link
+                to={"/inbox"}
+                className={`navbar-menu ${menuOpen ? "open" : "close"}`}
+              >
+                <Button type="primary" danger style={{ marginTop: "1rem" }}>
+                  Inbox
+                </Button>
+              </Link>
+              <div className={"profile-btn"}>
+                <Dropdown
+                  menu={{
+                    items,
+                  }}
+                  trigger={["click"]}
+                >
+                  <img
+                    src={profilePhoto}
+                    style={{
+                      width: "3rem",
+                      height: "3rem",
+                      borderRadius: "5rem",
+                      marginTop: "2rem",
+                    }}
+                    alt="Profile"
+                  />
+                </Dropdown>
+              </div>
             </li>
           ) : (
-            <div></div>
+            <>
+              <li>
+                <button
+                  className="register-btn onMobile"
+                  onClick={() => navigate("/signin")}
+                >
+                  Login
+                </button>
+                <button
+                  style={{ marginTop: "10px" }}
+                  className="register-btn onMobile"
+                  onClick={() => navigate("/auth")}
+                >
+                  Register
+                </button>
+              </li>
+            </>
           )}
         </ul>
 
         {user ? (
-          <>
-            <Link to={"/inbox"}>
+          <div className="profile-dropdown">
+            <Link
+              to={"/inbox"}
+              className={`navbar-menu ${menuOpen ? "open" : "close"}`}
+            >
               <Button type="primary" danger>
                 Inbox
               </Button>
@@ -145,25 +172,23 @@ const Navbar = ({ user }) => {
                 />
               </Dropdown>
             </div>
-          </>
+          </div>
         ) : (
-          <>
-            <div className="navbar-register-btn">
-              <button
-                className="register-btn"
-                onClick={() => navigate("/signin")}
-              >
-                Login
-              </button>
-              <button
-                className="register-btn"
-                onClick={() => navigate("/joinnow")}
-                style={{ marginLeft: "1rem" }}
-              >
-                Register
-              </button>
-            </div>
-          </>
+          <div className="navbar-register-btn">
+            <button
+              className="register-btn"
+              onClick={() => navigate("/signin")}
+            >
+              Login
+            </button>
+            <button
+              style={{ marginLeft: "10px" }}
+              className="register-btn"
+              onClick={() => navigate("/joinnow")}
+            >
+              Register
+            </button>
+          </div>
         )}
       </nav>
     </>
