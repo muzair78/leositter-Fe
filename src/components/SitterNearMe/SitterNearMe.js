@@ -49,12 +49,14 @@ const SitterNearMe = () => {
         console.log(currentUser);
         return (
           <>
-            <Row justify={"space-between"}>
-              <Col lg={24} xs={24}>
-                <div className="main-card" key={index}>
+            <div className="main-card" key={index}>
+              <Row justify={"center"}>
+                <Col lg={3} md={4} xs={0}>
                   <div className="leftDiv">
                     <img className="imgee" src={imge1} />
                   </div>
+                </Col>
+                <Col lg={12} md={12} xs={20}>
                   <div className="rightDiv">
                     <div
                       className="info-sec"
@@ -116,9 +118,9 @@ const SitterNearMe = () => {
                       <FaHandHoldingHeart style={{ color: "#DE3163" }} />
                     </div>
                   </div>
-                </div>
-              </Col>
-            </Row>
+                </Col>
+              </Row>
+            </div>
           </>
         );
       })}

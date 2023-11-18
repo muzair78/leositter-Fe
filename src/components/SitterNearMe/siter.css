@@ -1,6 +1,5 @@
 .imgee {
   height: 100px;
-  width: 120px;
   border-top-left-radius: 50% 50%;
   border-top-right-radius: 50% 50%;
   border-bottom-right-radius: 50% 50%;
@@ -23,8 +22,13 @@
   display: flex;
   justify-content: space-between;
   gap: 50px;
-  width: 45rem;
 }
 .custom-rate .ant-form-item-label {
   font-size: 100px; /* Adjust the font size as per your requirements */
+}
+
+@media (max-width: 620px) {
+  .imgee {
+    display: none;
+  }
 }
