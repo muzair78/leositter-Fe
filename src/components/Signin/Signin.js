@@ -37,8 +37,9 @@ const Signin = () => {
       .post(URL, user)
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data.data.user);
+          console.log(res);
           localStorage.setItem("user", JSON.stringify(res.data.data.user));
+          localStorage.setItem("token", JSON.stringify(res.data.token));
           <ToastContainer />;
           toast.success("Singin sucessfully", {
             position: "top-right",

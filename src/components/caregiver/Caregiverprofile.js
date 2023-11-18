@@ -110,8 +110,7 @@ const Caregiverprofile = () => {
     axios
       .patch(URL, Password)
       .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
+        if (res.status === 201) {
           toast("Password Update Sucessfully", {
             position: "top-right",
             autoClose: 5000,
@@ -121,6 +120,10 @@ const Caregiverprofile = () => {
             draggable: true,
             progress: undefined,
             theme: "light",
+          });
+          setPassword({
+            password: "",
+            confirm_password: "",
           });
         }
       })

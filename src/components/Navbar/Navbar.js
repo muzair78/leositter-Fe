@@ -55,7 +55,7 @@ const Navbar = ({ user }) => {
     navigate(`/sitters/${e.value}`);
   };
   const logout = () => {
-    localStorage.clear();
+    localStorage.removeItem("user");
     navigate("/");
   };
   const items = [

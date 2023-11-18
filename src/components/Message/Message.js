@@ -21,8 +21,19 @@ const Message = () => {
 
   const sendMessage = async (_id) => {
     try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      console.log(token);
       const URL = `http://13.235.24.24:4000/send-messages/${userId}/${_id}`;
-      const res = await axios.post(URL, { messages });
+      const instanse = axios.create({
+        baseURL: "http://13.235.24.24:4000",
+        headers: {
+          Authorization: `${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      const res = await instanse.post(`send-messages/${userId}/${_id}`, {
+        messages,
+      });
       if (messages === "" || messages === undefined || messages === null) {
         return;
       }
