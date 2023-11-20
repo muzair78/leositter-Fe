@@ -4,11 +4,10 @@ import { Checkbox, Col, Form, Input, Row, Slider } from "antd";
 import "./jobForm.css";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import instance from "../../helpers/BaseUrl";
 
-// Step components
 const Step1 = ({ data, handleChange }) => {
   const [sliderValue, setSliderValue] = useState(0);
-
   const handleSliderChange = (value) => {
     handleChange("weeklyhours", value);
     setSliderValue(value);
@@ -163,27 +162,16 @@ const CaregiverAbout = () => {
   });
   const navigate = useNavigate();
   const userID = JSON.parse(localStorage.getItem("user"))._id;
-
-  console.log(userID);
-
-  console.log(userID);
-  const fetchData = (id) => {
-    console.log(userID);
-    const URL = `http://13.235.24.24:4000/jobForm/${userID}`;
-    axios({
-      method: "patch",
-      url: URL, // Use the URL variable instead of hardcoding the URL
-      withCredentials: false,
-      data: formData,
-    }).then((res) => {
-      console.log(res.data);
+  const fetchData = async (id) => {
+    try {
+      const res = await instance.patch(`/jobForm/${userID}`, formData);
       if (res.status === 200) {
-        navigate("/petsitter-profile");
+        navigate("/signin");
       }
-    });
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-  console.log(formData);
 
   const handleNext = () => {
     setCurrentStep(currentStep + 1);

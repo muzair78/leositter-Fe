@@ -1,37 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import Navbar from "../Navbar/Navbar";
-import { Button, Form, Input, Affix, Row, Col } from "antd";
+import { Input, Affix, Row, Col } from "antd";
 import { AiOutlineSend } from "react-icons/ai";
-import axios from "axios";
+import instance from "../../helpers/BaseUrl";
 import "./Message.css";
 import newimg from "../../assets/Naseem-Shah.webp";
 
 const Message = () => {
   const [messages, setMessages] = useState("");
   const [chat, setChat] = useState([]);
-  const [lastval, setLastval] = useState("");
   const [username, setUsername] = useState("");
   const [id, setId] = useState(null);
   const [object, setObject] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user._id;
-  const userName = user.name;
   const location = useLocation();
 
   const sendMessage = async (_id) => {
     try {
-      const token = JSON.parse(localStorage.getItem("token"));
-      console.log(token);
-      const URL = `http://13.235.24.24:4000/send-messages/${userId}/${_id}`;
-      const instanse = axios.create({
-        baseURL: "http://13.235.24.24:4000",
-        headers: {
-          Authorization: `${token}`,
-          "Content-Type": "application/json",
-        },
-      });
-      const res = await instanse.post(`send-messages/${userId}/${_id}`, {
+      const res = await instance.post(`send-messages/${userId}/${_id}`, {
         messages,
       });
       if (messages === "" || messages === undefined || messages === null) {
@@ -47,9 +34,7 @@ const Message = () => {
   };
   const fetchMessages = async (_id) => {
     try {
-      const URL = `http://13.235.24.24:4000/getmessage/${userId}/${_id}`;
-
-      const res = await axios.get(URL);
+      const res = await instance.get(`/getmessage/${userId}/${_id}`);
       setChat(res.data.data);
     } catch (error) {
       console.log(error);
@@ -57,9 +42,7 @@ const Message = () => {
   };
   const fetchConvers = async () => {
     try {
-      const URL = `http://13.235.24.24:4000/fetchConv/${userId}`;
-      const res = await axios.get(URL);
-
+      const res = await instance.get(`/fetchConv/${userId}`);
       setObject(res.data.data);
     } catch (error) {
       console.log(error);

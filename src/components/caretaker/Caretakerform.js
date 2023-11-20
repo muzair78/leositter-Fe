@@ -1,46 +1,36 @@
 import { React } from "react";
 import "./care.css";
 import careimg from "../../assets/Elderly-Caregiver.jpg";
-import { Button, Form, Input, Select, Space } from "antd";
-import axios from "axios";
+import { Button, Form, Input, Select } from "antd";
 import { RiKeyLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { Col, Row } from "antd";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import instance from "../../helpers/BaseUrl";
 
 const { Option } = Select;
 
 const Caretakerform = () => {
+  const [form] = Form.useForm();
   const navigate = useNavigate();
-
-  const onFinish = (values) => {
-    // setFormValues(values);
-    const URL = "http://13.235.24.24:4000/joinnow/caregiver";
-    axios
-      .post(URL, values)
-      .then((res) => {
-        console.log(res);
-
-        if (res.status === 201) {
-          localStorage.setItem("user", JSON.stringify(res.data.data));
-          navigate("/care-taker");
-        }
-      })
-      .catch((res) => {
-        if (res.status === 409) {
-          toast.error("An error occurred. Please try again later.", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        }
-      }); // Update formValues state with the submitted values
+  const onFinish = async (values) => {
+    try {
+      if (values.password !== values.cpassword) {
+        toast.error("Passwords do not match");
+        return;
+      }
+      const res = await instance.post(`/joinnow/caregiver`, values);
+      if (res.status === 201) {
+        form.resetFields();
+        navigate("/signin");
+        toast.success("Signup sucessfully", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
@@ -91,7 +81,6 @@ const Caretakerform = () => {
                     style={{ padding: "0.5rem" }}
                   />
                 </Form.Item>
-
                 <Form.Item
                   name="phone"
                   rules={[{ required: true, message: "Phone is required" }]}

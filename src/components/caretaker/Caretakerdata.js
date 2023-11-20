@@ -1,38 +1,39 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import profilepic from "../../assets/Naseem-Shah.webp";
 import { MdOutlineGppGood } from "react-icons/md";
-import { FcLike } from "react-icons/fc";
-import { FaUserGraduate } from "react-icons/fa";
-import { AiTwotoneMessage } from "react-icons/ai";
 import { Col, Row, Button } from "antd";
+import instance from "../../helpers/BaseUrl";
+import "./care.css";
 
 const Caretakerdata = () => {
   const [likeBtn, setlikeBtn] = useState();
   const [state, setState] = useState([]);
   const [name, setName] = useState();
-  const location = useLocation();
   const navigate = useNavigate();
-  // const { _id } = useParams();
   const user = localStorage.getItem("user");
   const JSONData = JSON.parse(user);
   const service = JSONData.service;
   const { _id } = useParams();
 
-  const fetchData = () => {
-    const URL = `http://13.235.24.24:4000/petSitter/${_id}`;
-    axios.get(URL).then((res) => {
+  const fetchData = async () => {
+    try {
+      const res = await instance.get(`/petSitter/${_id}`);
       setlikeBtn(res.data.findUser);
       setName(res.data.findUser.name);
-      console.log(res);
-    });
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const fetchRecommendedUsers = () => {
-    const recommendedURL = `http://13.235.24.24:4000/caretaker/caretakerdata/people/${service}`;
-    axios.get(recommendedURL).then((res) => {
+  const fetchRecommendedUsers = async () => {
+    try {
+      const res = await instance.get(
+        `/caretaker/caretakerdata/people/${service}`
+      );
       setState(res.data.findSitter);
-    });
+    } catch (error) {
+      console.log(error);
+    }
   };
   const handleCardClick = (userId) => {
     navigate(`/caretaker/caretakerdata/${userId}`);
@@ -54,9 +55,7 @@ const Caretakerdata = () => {
     <>
       <div>
         <Row justify={"space-evenly"}>
-          {" "}
-          <Col lg={13} xs={24} md={24}>
-            {" "}
+          <Col lg={12} sm={24}>
             <div
               className="main"
               style={{
@@ -157,9 +156,9 @@ const Caretakerdata = () => {
                 </div>
                 <div>No Reviews Available</div>
               </div>
-            </div>{" "}
+            </div>
           </Col>
-          <Col lg={5} xs={12} md={12}>
+          <Col lg={6} sm={6}>
             {" "}
             <div className="people" style={{ marginTop: "3rem" }}>
               <div

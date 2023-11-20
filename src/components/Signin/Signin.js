@@ -1,84 +1,43 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Signin.css";
 import { Button, Checkbox, Form, Input, Row, Col } from "antd";
-import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaLock } from "react-icons/fa6";
-import FormItem from "antd/es/form/FormItem";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import instance from "../../helpers/BaseUrl";
+import { ToastContainer, toast } from "react-toastify";
 
-const onFinish = (values) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
 const Signin = () => {
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
-  let name, value;
-  const userData = (e) => {
-    name = e.target.name;
-    value = e.target.value;
-    setUser({ ...user, [name]: value });
-  };
   const navigate = useNavigate();
 
-  const URL = "http://13.235.24.24:4000/signin";
-  const fetchData = (e) => {
-    e.preventDefault();
+  const onFinish = async (values) => {
+    try {
+      const res = await instance.post(`/signin`, values);
 
-    axios
-      .post(URL, user)
-      .then((res) => {
-        if (res.status === 200) {
-          console.log(res);
-          localStorage.setItem("user", JSON.stringify(res.data.data.user));
-          localStorage.setItem("token", JSON.stringify(res.data.token));
-          <ToastContainer />;
-          toast.success("Singin sucessfully", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-          // navigate("/care-taker");
-          switch (res.data.data.user.role) {
-            case "petsitter":
-              navigate("/petsitter-profile");
-              break;
-            case "caregiver":
-              navigate("/care-taker");
-              break;
-            default:
-          }
-          // setUser({
-          //   email: "",
-          //   password: "",
-          // });
+      if (res.status === 200) {
+        localStorage.setItem("user", JSON.stringify(res.data.data.user));
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+        switch (res.data.data.user.role) {
+          case "petsitter":
+            navigate("/petsitter-profile");
+            break;
+          case "caregiver":
+            navigate("/care-taker");
+            break;
+          default:
         }
-      })
-      .catch(() => {
-        toast.error("Wrong Credentials", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
+        toast.success("Login Succesfully..!", {
+          position: toast.POSITION.TOP_RIGHT,
         });
-      });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
   };
   return (
     <>
@@ -119,8 +78,6 @@ const Signin = () => {
                     placeholder="Enter Your Email"
                     className="login"
                     name="email"
-                    value={user.email}
-                    onChange={userData}
                     autoComplete="on"
                     style={{ padding: "0.8rem" }}
                   />
@@ -136,8 +93,6 @@ const Signin = () => {
                     placeholder="Enter Your password"
                     name={"password"}
                     className="password"
-                    value={user.password}
-                    onChange={userData}
                     style={{ padding: "0.8rem" }}
                   />
                 </Form.Item>
@@ -150,7 +105,6 @@ const Signin = () => {
                     danger
                     htmlType="submit"
                     className="login-form-button"
-                    onClick={fetchData}
                     style={{
                       width: "100%",
                       height: "3rem",

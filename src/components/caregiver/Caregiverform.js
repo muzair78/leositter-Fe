@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { Button, Checkbox, Col, Form, Input, Row, Select, Space } from "antd";
 import "./JoinNow.css";
 import { useNavigate } from "react-router-dom";
+import instance from "../../helpers/BaseUrl";
 
 const layout = {
   labelCol: { span: 4 },
@@ -15,104 +16,27 @@ const layout = {
 const { Option } = Select;
 
 const Caregiverform = () => {
-  const [user, setUser] = useState({
-    name: "",
-    username: "",
-    phone: "",
-    email: "",
-    Pservice: "",
-    password: "",
-    cpassword: "",
-  });
+  const [form] = Form.useForm();
   const navigate = useNavigate();
-  let name, value;
-  const userData = (e) => {
-    name = e.target.name;
-    value = e.target.value;
-    setUser({ ...user, [name]: value });
-  };
-  const URL = "http://13.235.24.24:4000/signup";
-  const fetchUser = (e) => {
-    e.preventDefault();
-    if (
-      !user.name ||
-      !user.username ||
-      !user.phone ||
-      !user.email ||
-      !user.Pservice ||
-      !user.password ||
-      !user.cpassword
-    ) {
-      toast.warn("Fill All Data", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-      return;
-    }
-    if (user.password !== user.cpassword) {
-      toast.warn("Password and Confirm Password should be same", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-      return;
-    }
+  const onFinish = async (values) => {
+    try {
+      if (values.password !== values.cpassword) {
+        toast.error("Passwords do not match");
+        return;
+      }
+      const res = await instance.post("/signup", values);
 
-    axios
-      .post(URL, user)
-      .then((res) => {
-        if (res.status === 201) {
-          setUser({
-            name: "",
-            username: "",
-            phone: "",
-            email: "",
-            Pservice: "",
-            password: "",
-            cpassword: "",
-          });
-          localStorage.setItem("user", JSON.stringify(res.data.data));
-          navigate("/jobForm");
-          toast.success("Signup Sucessfully", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        }
-      })
-      .catch((error) => {
-        if (error.response && error.response.status === 409) {
-          toast.error("Email Already Exist", {});
-        } else {
-          toast.error("An error occurred. Please try again later.", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        }
-        console.error(error); // Log the error for debugging purposes
-      });
+      if (res.status === 201) {
+        form.resetFields();
+        localStorage.setItem("user", JSON.stringify(res.data.data));
+        navigate("/jobForm");
+        toast.success("Signup Succesfully", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
@@ -144,7 +68,9 @@ const Caregiverform = () => {
               </div>
             </div>
             <Form
-              layout="horizontal"
+              {...layout}
+              name="basic"
+              onFinish={onFinish}
               className="form-child"
               style={{ marginTop: "1rem" }}
             >
@@ -152,64 +78,37 @@ const Caregiverform = () => {
                 name="name"
                 rules={[{ required: true, message: "Name is required" }]}
               >
-                <Input
-                  name="name"
-                  placeholder="Your Name"
-                  value={user.name}
-                  onChange={userData}
-                  style={{ padding: "0.5rem" }}
-                />
+                <Input placeholder="Your Name" />
               </Form.Item>
 
               <Form.Item
                 name="username"
                 rules={[{ required: true, message: "Username is required" }]}
               >
-                <Input
-                  style={{ padding: "0.5rem" }}
-                  name="username"
-                  placeholder="Your Username"
-                  value={user.username}
-                  onChange={userData}
-                />
+                <Input placeholder="Your Username" />
               </Form.Item>
 
               <Form.Item
                 name="phone"
                 rules={[{ required: true, message: "Phone is required" }]}
               >
-                <Input
-                  style={{ padding: "0.5rem" }}
-                  name="phone"
-                  placeholder="your phone number"
-                  value={user.phone}
-                  onChange={userData}
-                />
+                <Input placeholder="Your phone number" />
               </Form.Item>
 
               <Form.Item
                 name="email"
                 rules={[{ required: true, message: "Email is required" }]}
               >
-                <Input
-                  name="email"
-                  style={{ padding: "0.5rem" }}
-                  placeholder="Enter Email"
-                  type="email"
-                  value={user.email}
-                  onChange={userData}
-                />
+                <Input placeholder="Enter Email" type="email" />
               </Form.Item>
 
               <Form.Item
-                name="Pservice" // Corrected the name attribute to a string
+                name="Pservice"
                 rules={[{ required: true, message: "Service is required" }]}
-                value={user.Pservice}
-                onChange={(value) => setUser({ ...user, Pservice: value })}
               >
                 <Select
                   placeholder="Which service do you offer?"
-                  onChange={(value) => setUser({ ...user, Pservice: value })}
+                  onChange={(value) => form.setFieldsValue({ Pservice: value })}
                 >
                   <Option value="Cat Sitter">Cat Sitter</Option>
                   <Option value="Dog Sitter">Dog Sitter</Option>
@@ -218,34 +117,23 @@ const Caregiverform = () => {
               </Form.Item>
 
               <Form.Item
+                name="password"
                 rules={[{ required: true, message: "Password is required" }]}
               >
-                <Input
-                  name="password"
-                  value={user.password}
-                  style={{ padding: "0.5rem" }}
-                  placeholder="Create a strong password"
-                  onChange={userData}
-                  autoComplete={"off"}
-                />
+                <Input placeholder="Create a strong password" type="password" />
               </Form.Item>
 
               <Form.Item
                 name="cpassword"
-                rules={[{ required: true, message: "Password is required" }]}
+                rules={[
+                  { required: true, message: "Confirm Password is required" },
+                ]}
               >
-                <Input
-                  name="cpassword"
-                  style={{ padding: "0.5rem" }}
-                  placeholder="Confirm Password"
-                  value={user.cpassword}
-                  onChange={userData}
-                  autoComplete={"off"}
-                />
+                <Input placeholder="Confirm Password" type="password" />
               </Form.Item>
 
               <Form.Item>
-                <Button danger onClick={fetchUser} style={{ width: "50%" }}>
+                <Button danger style={{ width: "50%" }} htmlType="submit">
                   Signup
                 </Button>
               </Form.Item>

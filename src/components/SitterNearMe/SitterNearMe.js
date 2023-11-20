@@ -7,6 +7,7 @@ import { StarFilled } from "@ant-design/icons";
 import { ImAidKit } from "react-icons/im";
 import { FaHandHoldingHeart } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+import instance from "../../helpers/BaseUrl";
 
 const SitterNearMe = () => {
   const [user, setUser] = useState([]);
@@ -14,15 +15,13 @@ const SitterNearMe = () => {
 
   const fetchData = async () => {
     try {
-      const URL = `http://13.235.24.24:4000/sitters/${type}`;
-      const response = await axios.get(URL);
-      console.log(response);
+      const response = await instance.get(`/sitters/${type}`);
       const array = response.data.sitterData;
       if (array.length > 0) {
         setUser(array);
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 

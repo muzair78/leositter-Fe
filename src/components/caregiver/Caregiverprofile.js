@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Button, Form, Input, Select, Slider, Card } from "antd";
 import { Checkbox, Col, Row } from "antd";
-import axios from "axios";
 import FormItem from "antd/es/form/FormItem";
-import { NavLink } from "react-router-dom";
+import instance from "../../helpers/BaseUrl";
 const { Option } = Select;
 
 const layout = {
@@ -73,63 +73,56 @@ const Caregiverprofile = () => {
     const value = e.target.value;
     setPassword({ ...Password, [name]: value });
   };
-  const fetchData = () => {
-    const URL = `http://13.235.24.24:4000/petsitter-profile/${userData}`;
-    axios.get(URL).then((res) => {
+  const fetchData = async () => {
+    try {
+      const res = await instance.get(`/petsitter-profile/${userData}`);
       const responseData = res.data.checkUser[0];
       setFormData(responseData);
       form.setFieldsValue(responseData);
-      console.log();
-    });
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const patchData = () => {
-    const URL = `http://13.235.24.24:4000/petsitter-profile/${userData}`;
-    axios
-      .patch(URL, formData) // Stringify formData and include headers
-      .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          toast("User Update Sucessfully", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const patchData = async () => {
+    try {
+      const res = await instance.patch(
+        `/petsitter-profile/${userData}`,
+        formData
+      );
+      if (res.status === 200) {
+        toast("User Update Sucessfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const patchPassword = () => {
-    const URL = `http://13.235.24.24:4000/petsitter-profile/password/${userData}`;
-    axios
-      .patch(URL, Password)
-      .then((res) => {
-        if (res.status === 201) {
-          toast("Password Update Sucessfully", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-          setPassword({
-            password: "",
-            confirm_password: "",
-          });
-        }
-      })
-      .catch((res) => {
-        console.log(res);
-      });
+  const patchPassword = async () => {
+    try {
+      const res = await instance.patch(
+        `petsitter-profile/password/${userData}`,
+        Password
+      );
+      if (res.status === 201) {
+        setPassword({
+          password: "",
+          confirm_password: "",
+        });
+        toast.success("Signup Succesfully", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   const contentList = {
     My_Profile: (

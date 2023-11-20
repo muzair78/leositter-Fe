@@ -3,12 +3,11 @@ import { Card, Col, Row } from "antd";
 import React, { useEffect, useState } from "react";
 import cardimg from "../../assets/shaheen-afridi.avif";
 import "./care.css";
-import { toast } from "react-toastify";
-
-import axios from "axios";
+import instance from "../../helpers/BaseUrl";
 import { Rate } from "antd";
 import { NavLink } from "react-router-dom";
 import { Button, Form, Input, Select } from "antd";
+import { toast } from "react-toastify";
 
 const layout = {
   labelCol: {
@@ -38,8 +37,6 @@ const validateMessages = {
     range: "${label} must be between ${min} and ${max}",
   },
 };
-/* eslint-enable no-template-curly-in-string */
-
 const onFinish = (values) => {
   console.log(values);
 };
@@ -55,7 +52,6 @@ const CaretakerLanding = () => {
     phone: "",
     service: "",
   });
-
   const user = localStorage.getItem("user");
   const JSONdata = JSON.parse(user);
   const userService = JSONdata?.service;
@@ -66,67 +62,49 @@ const CaretakerLanding = () => {
     setActiveTabKey3(key);
   };
 
-  const FetchData = () => {
-    const URL = `http://13.235.24.24:4000/caregiver/petSitters/${userService}`;
-    axios
-      .get(URL)
-      .then((res) => {
-        setActiveTabKey2(res.data.findSitter);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const FetchData = async () => {
+    try {
+      const res = await instance.get(`/caregiver/petSitters/${userService}`);
+      setActiveTabKey2(res.data.findSitter);
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const FetchUserData = () => {
-    const URL = `http://13.235.24.24:4000/caretaker-profile/${ID}`;
-    axios.get(URL).then((res) => {
+  const FetchUserData = async () => {
+    try {
+      const res = await instance.get(`/caretaker-profile/${ID}`);
       setUserData(res.data.profileUser);
-      console.log(res);
-    });
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const PatchData = () => {
-    const URL = `http://13.235.24.24:4000/caretaker-profile/${ID}`;
-    axios.patch(URL, UserData).then((res) => {
-      console.log(res.data.data);
+  const PatchData = async () => {
+    try {
+      const res = await instance.patch(`/caretaker-profile/${ID}`, UserData);
       setUserData(res.data.data);
       if (res.status === 200) {
-        toast("User Update Sucessfully", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
+        toast.success("User Data update", {
+          position: toast.POSITION.TOP_RIGHT,
         });
       }
-    });
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const PatchPassword = () => {
-    const URL = `http://13.235.24.24:4000/caretaker-profile/password/${ID}`;
-    axios
-      .patch(URL, { password: Password }) // Fix the typo here
-      .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          toast("Password Update Sucessfully", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        }
-        setPassword("");
-      })
-
-      .catch((error) => {
-        console.log(error);
+  const PatchPassword = async () => {
+    try {
+      const res = await instance.patch(`/caretaker-profile/password/${ID}`, {
+        password: Password,
       });
+      if (res.status === 200) {
+        toast.success("Password Change sucessfully", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        setPassword("");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   const updateUser = (e) => {
     const name = e.target.name;
