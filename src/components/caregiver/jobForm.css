@@ -1,4 +1,6 @@
-/* CSS */
+.ant-upload-list {
+  display: none;
+} /* CSS */
 .nextButton {
   align-items: center;
   background-color: #ffffff;

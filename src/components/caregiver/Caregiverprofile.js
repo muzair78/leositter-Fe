@@ -1,9 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import Link from "antd/es/typography/Link";
 import "react-toastify/dist/ReactToastify.css";
-import { Button, Form, Input, Select, Slider, Card } from "antd";
-import { Checkbox, Col, Row } from "antd";
-import FormItem from "antd/es/form/FormItem";
+import { CameraOutlined, UserOutlined } from "@ant-design/icons";
+import "./jobForm.css";
+import {
+  Button,
+  Form,
+  Input,
+  Select,
+  Slider,
+  Card,
+  Upload,
+  Modal,
+  Avatar,
+} from "antd";
+import { Checkbox, Col, Row, message } from "antd";
 import instance from "../../helpers/BaseUrl";
 const { Option } = Select;
 
@@ -27,14 +39,6 @@ const tabList = [
   },
 ];
 
-const validateMessages = {
-  required: "${label} is required!",
-  types: {
-    email: "${label} is not a valid email!",
-    number: "${label} is not a valid number!",
-  },
-};
-
 const Caregiverprofile = () => {
   const [form] = Form.useForm();
   const [activeTabKey1, setActiveTabKey1] = useState("My_Profile");
@@ -43,28 +47,16 @@ const Caregiverprofile = () => {
     password: "",
     confirm_password: "",
   });
-  const [formData, setFormData] = useState({
-    name: "",
-    username: "",
-    phone: "",
-    Pservice: "",
-    hourrate: 0,
-    weeklyhours: 0,
-    about: "",
-    password: "",
-    available: "",
-  });
+  const [value, setValue] = useState();
+  const [dp, setDp] = useState("");
+  const [file, setFile] = useState();
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState("");
+  const [previewTitle, setPreviewTitle] = useState("");
+  const [fileList, setFileList] = useState(undefined);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const user_id = JSON.parse(localStorage.getItem("user"))?._id;
 
-  const userData = JSON.parse(localStorage.getItem("user"))?._id;
-
-  const updateData = (e) => {
-    console.log("Updating data...");
-    const name = e.target.name;
-    const value = e.target.value;
-    console.log("Name:", name);
-    console.log("Value:", value);
-    setFormData({ ...formData, [name]: value });
-  };
   const onTab1Change = (key) => {
     setActiveTabKey1(key);
   };
@@ -75,32 +67,11 @@ const Caregiverprofile = () => {
   };
   const fetchData = async () => {
     try {
-      const res = await instance.get(`/petsitter-profile/${userData}`);
+      const res = await instance.get(`/user/petsitter-profile/${user_id}`);
       const responseData = res.data.checkUser[0];
-      setFormData(responseData);
+      setDp(res.data.checkUser[0].profileImg);
       form.setFieldsValue(responseData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const patchData = async () => {
-    try {
-      const res = await instance.patch(
-        `/petsitter-profile/${userData}`,
-        formData
-      );
-      if (res.status === 200) {
-        toast("User Update Sucessfully", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      }
+      setValue(responseData);
     } catch (error) {
       console.log(error);
     }
@@ -108,7 +79,7 @@ const Caregiverprofile = () => {
   const patchPassword = async () => {
     try {
       const res = await instance.patch(
-        `petsitter-profile/password/${userData}`,
+        `/auth/petsitter-profile/password/${user_id}`,
         Password
       );
       if (res.status === 201) {
@@ -116,7 +87,7 @@ const Caregiverprofile = () => {
           password: "",
           confirm_password: "",
         });
-        toast.success("Signup Succesfully", {
+        toast.success("Password Update ", {
           position: toast.POSITION.TOP_RIGHT,
         });
       }
@@ -124,20 +95,113 @@ const Caregiverprofile = () => {
       console.log(error);
     }
   };
+  const handleCancel = () => setPreviewOpen(false);
+  const handleUpload = (event) => {
+    setFileList(event.file.originFileObj);
+    setFile(URL.createObjectURL(event.file.originFileObj));
+  };
+  const validateMessages = {
+    required: "${label} is required!",
+    types: {
+      email: "${label} is not a valid email!",
+    },
+    number: {
+      range: "${label} must be between ${min} and ${max}",
+    },
+  };
+
+  const onFinish = async (values) => {
+    console.log("Form submitted with values:", values);
+    try {
+      if (fileList !== undefined) {
+        const formData = new FormData();
+        console.log(formData);
+        for (const key in values) {
+          if (Array.isArray(values[key])) {
+            formData.append(key, values[key]);
+          } else {
+            formData.append(key, values[key]);
+          }
+        }
+
+        formData.append("profileImg", fileList);
+
+        const res = await instance.patch(
+          `/auth/petsitter-profile/${user_id}`,
+          formData
+        );
+        console.log(res);
+        if (res.status === 200) {
+          localStorage.setItem("user", JSON.stringify(res.data));
+          toast("User Update Successfully", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+      } else {
+        const res = await instance.patch(
+          `/auth/petsitter-profile/${user_id}`,
+          values
+        );
+        if (res.status === 200) {
+          toast("User Update Successfully", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const picture = form?.getFieldValue("profileImg");
   const contentList = {
     My_Profile: (
       <>
+        <Avatar
+          size={100}
+          src={file !== null ? file : picture ? picture : null}
+          icon={<UserOutlined />}
+        />
+        <Upload onChange={handleUpload} className="camera-icon-pro">
+          <Link to="#">
+            <CameraOutlined size={16} />
+          </Link>
+        </Upload>
+
+        <Modal
+          visible={previewOpen}
+          title={previewTitle}
+          footer={null}
+          onCancel={handleCancel}
+        >
+          <img alt="example" style={{ width: "100%" }} src={previewImage} />
+        </Modal>
         <Form
           {...layout}
+          form={form}
+          name="nest-messages"
+          onFinish={onFinish}
           style={{
             maxWidth: 600,
           }}
           validateMessages={validateMessages}
-          form={form}
-          onFinish={patchData}
         >
           <Form.Item
-            name="name"
+            name={"name"}
             label="Name"
             rules={[
               {
@@ -145,96 +209,47 @@ const Caregiverprofile = () => {
               },
             ]}
           >
-            <Input
-              name="name"
-              value={formData.name}
-              onChange={(e) => updateData(e)}
-            />
+            <Input />
+          </Form.Item>
+          <Form.Item name={"phone"} label="phone">
+            <Input />
+          </Form.Item>
+          <Form.Item name={"hourrate"} label="hourrate">
+            <Slider onChange={(e) => form.setFieldsValue({ hourrate: e })} />
+            <p style={{ textAlign: "center" }}>
+              {form.getFieldValue("hourrate")}$/Hour
+            </p>
+          </Form.Item>
+          <Form.Item label="Weekly Hours" name="weeklyhours">
+            <Slider onChange={(e) => form.setFieldsValue({ weeklyhours: e })} />
+            <p style={{ textAlign: "center" }}>
+              {form.getFieldValue("weeklyhours")} Hours
+            </p>
           </Form.Item>
           <Form.Item
-            name="username"
-            label="Username"
-            rules={[
-              {
-                type: "text",
-              },
-            ]}
-          >
-            <Input
-              name="username"
-              value={formData.username}
-              onChange={(e) => updateData(e)}
-            />
-          </Form.Item>
-          <Form.Item
-            name="phone"
-            label="Phone"
-            rules={[
-              {
-                type: "tel",
-              },
-            ]}
-          >
-            <Input
-              name="phone"
-              value={formData.phone}
-              onChange={(e) => updateData(e)}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name="Pservice"
-            label="Service"
-            value={formData?.Pservice}
+            name="service"
+            label="service"
             rules={[
               {
                 required: true,
-                message: "Please select service",
+                message: "Please select any!",
               },
             ]}
           >
             <Select
-              placeholder="Select your service"
-              onChange={(value) =>
-                updateData({ target: { name: "Pservice", value } })
-              }
+              placeholder="Which service do you offer?"
+              onChange={(value) => form.setFieldsValue({ service: value })}
             >
               <Option value="Cat Sitter">Cat Sitter</Option>
               <Option value="Dog Sitter">Dog Sitter</Option>
               <Option value="Bird Sitter">Bird Sitter</Option>
             </Select>
           </Form.Item>
-          <Form.Item name="hourrate" label="Hour_rate">
-            <div>
-              <Slider
-                value={formData?.hourrate}
-                onChange={(value) =>
-                  setFormData({ ...formData, hourrate: value })
-                }
-              />
-              <h4 style={{ textAlign: "center" }}>{formData?.hourrate}$/hr</h4>
-            </div>
-          </Form.Item>
-          <Form.Item name="weeklyhours" label="Weekly_Hours">
-            <div>
-              <Slider
-                value={formData?.weeklyhours}
-                onChange={(value) =>
-                  setFormData({ ...formData, weeklyhours: value })
-                }
-              />
-              <h4 style={{ textAlign: "center" }}>{formData?.weeklyhours}hr</h4>
-            </div>
-          </Form.Item>
-          <FormItem name="available" label="Available">
+          <Form.Item name="available" label="Available">
             <Checkbox.Group
-              style={{ width: "100%" }}
-              value={formData?.available}
-              onChange={(value) =>
-                setFormData({ ...formData, available: value })
-              }
+              onChange={(e) => form.setFieldsValue({ available: e })}
             >
-              <Row style={{ height: "10rem" }}>
+              <Row>
                 <Col span={8}>
                   <Checkbox value="Monday">Monday</Checkbox>
                 </Col>
@@ -253,36 +268,20 @@ const Caregiverprofile = () => {
                 <Col span={8}>
                   <Checkbox value="Saturday">Saturday</Checkbox>
                 </Col>
-                <Col span={8}>
-                  <Checkbox value="Sunday">Sunday</Checkbox>
-                </Col>
               </Row>
             </Checkbox.Group>
-          </FormItem>
-          <Form.Item
-            name="about"
-            label="About"
-            rules={[
-              {
-                type: "text",
-              },
-            ]}
-          >
-            <Input.TextArea
-              name={"about"}
-              value={formData?.about}
-              onChange={(e) => updateData(e)}
-            />
           </Form.Item>
-
+          <Form.Item name={"about"} label="about">
+            <Input.TextArea />
+          </Form.Item>
           <Form.Item
             wrapperCol={{
               ...layout.wrapperCol,
               offset: 8,
             }}
           >
-            <Button type="primary" htmlType="submit" onClick={patchData} danger>
-              Update
+            <Button type="primary" htmlType="submit" danger>
+              Submit
             </Button>
           </Form.Item>
         </Form>

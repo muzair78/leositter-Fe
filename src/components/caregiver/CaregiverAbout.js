@@ -164,7 +164,7 @@ const CaregiverAbout = () => {
   const userID = JSON.parse(localStorage.getItem("user"))._id;
   const fetchData = async (id) => {
     try {
-      const res = await instance.patch(`/jobForm/${userID}`, formData);
+      const res = await instance.patch(`/auth/jobForm/${userID}`, formData);
       if (res.status === 200) {
         navigate("/signin");
       }

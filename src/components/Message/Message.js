@@ -4,10 +4,11 @@ import { Input, Affix, Row, Col } from "antd";
 import { AiOutlineSend } from "react-icons/ai";
 import instance from "../../helpers/BaseUrl";
 import "./Message.css";
-import newimg from "../../assets/Naseem-Shah.webp";
+import newimg from "../../assets/circle.jpg";
 
 const Message = () => {
   const [messages, setMessages] = useState("");
+  const [display, setDisplay] = useState("");
   const [chat, setChat] = useState([]);
   const [username, setUsername] = useState("");
   const [id, setId] = useState(null);
@@ -18,7 +19,7 @@ const Message = () => {
 
   const sendMessage = async (_id) => {
     try {
-      const res = await instance.post(`send-messages/${userId}/${_id}`, {
+      const res = await instance.post(`/user/send-messages/${userId}/${_id}`, {
         messages,
       });
       if (messages === "" || messages === undefined || messages === null) {
@@ -27,6 +28,7 @@ const Message = () => {
       if (res.status === 201) {
         setChat([...chat, res.data.data]);
         setMessages("");
+        fetchConvers();
       }
     } catch (error) {
       console.log(error);
@@ -34,21 +36,21 @@ const Message = () => {
   };
   const fetchMessages = async (_id) => {
     try {
-      const res = await instance.get(`/getmessage/${userId}/${_id}`);
+      const res = await instance.get(`/user/getmessage/${userId}/${_id}`);
       setChat(res.data.data);
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
   };
   const fetchConvers = async () => {
     try {
-      const res = await instance.get(`/fetchConv/${userId}`);
+      const res = await instance.get(`/user/fetchConv/${userId}`);
       setObject(res.data.data);
     } catch (error) {
       console.log(error);
     }
   };
-
   useEffect(() => {
     if (location.state) {
       let { _id } = location.state;
@@ -60,7 +62,6 @@ const Message = () => {
     }
     fetchConvers();
   }, []);
-
   return (
     <>
       <Row justify={"space-between"} style={{ padding: "1rem 1rem 0px 1rem" }}>
@@ -86,6 +87,9 @@ const Message = () => {
               return (
                 <>
                   {filterData.map((value, key) => {
+                    const User = value.profileImg;
+                    const userIMG = User ? User : newimg;
+
                     return (
                       <>
                         <div
@@ -100,10 +104,14 @@ const Message = () => {
                           onClick={() => {
                             setId(value._id); // Set the id state to the clicked user's _id
                             fetchMessages(value._id);
-                            setUsername(value.name); // Pass the clicked user's _id to fetchMessages
+                            setUsername(value.name);
                           }}
                         >
-                          <img src={newimg} className="img" alt="user avatar" />
+                          <img
+                            src={userIMG}
+                            className="img"
+                            alt="user avatar"
+                          />
                           <div
                             style={{
                               display: "flex",
@@ -180,7 +188,6 @@ const Message = () => {
                       const dateString = val.created_at;
                       const date = new Date(dateString);
                       const simpleTime = date.toLocaleTimeString();
-                      console.log(simpleTime);
                       return (
                         <div
                           key={index}

@@ -1,19 +1,15 @@
 // Navbar.js
 import React, { useState } from "react";
 import "./Navbar.css";
-import { Avatar, Dropdown, Menu, Input, Button, Select } from "antd";
-import {
-  SearchOutlined,
-  DownOutlined,
-  MenuOutlined,
-  CloseOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import { Form, NavLink, useNavigate, Link } from "react-router-dom";
-import { AiFillPlusCircle } from "react-icons/ai";
+import { Dropdown, Menu, Button, Select } from "antd";
+import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
+import { useNavigate, Link } from "react-router-dom";
 import { BiCopy } from "react-icons/bi";
 import { FaCat } from "react-icons/fa";
 import profilePhoto from "../../assets/Naseem-Shah.webp";
+import circle from "../../assets/circle.jpg";
+const userDP = JSON.parse(localStorage.getItem("user"))?.profileImg;
+const userImage = userDP ? userDP : circle;
 
 const Navbar = ({ user }) => {
   const navigate = useNavigate();
@@ -21,41 +17,11 @@ const Navbar = ({ user }) => {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    window.location.href = "/auth";
-  };
-  const menu = (
-    <Menu>
-      {/* <Menu.Item
-        key="profile"
-        onClick={goToProfile}
-      
-      >
-        Profile & Settings
-      </Menu.Item> */}
-      <Menu.Item key="logout" onClick={handleLogout}>
-        Logout
-      </Menu.Item>
-    </Menu>
-  );
-  const studySetMenu = (
-    <Menu>
-      <Menu.Item
-        key="logout"
-        onClick={() => navigate("/study-sets/create")}
-        icon={<BiCopy size={20} />}
-      >
-        Study sets
-      </Menu.Item>
-    </Menu>
-  );
   const handleChange = (value, e) => {
     navigate(`/sitters/${e.value}`);
   };
   const logout = () => {
-    localStorage.removeItem("user");
+    localStorage.clear();
     navigate("/");
   };
   const items = [
@@ -84,7 +50,7 @@ const Navbar = ({ user }) => {
           <li>
             <Select
               defaultValue={"Select Sitter"}
-              style={{ width: 200 }}
+              style={{ width: 300 }}
               onChange={handleChange}
               options={[
                 { value: "Bird Sitter", label: "Bird Sitter" },
@@ -111,7 +77,7 @@ const Navbar = ({ user }) => {
                   trigger={["click"]}
                 >
                   <img
-                    src={profilePhoto}
+                    src={userImage}
                     style={{
                       width: "3rem",
                       height: "3rem",
@@ -162,7 +128,7 @@ const Navbar = ({ user }) => {
                 trigger={["click"]}
               >
                 <img
-                  src={profilePhoto}
+                  src={userImage}
                   style={{
                     width: "3rem",
                     height: "3rem",

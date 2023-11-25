@@ -79,8 +79,8 @@ const Home4 = () => {
               >
                 <h4>Pet Sitting</h4>
                 <p style={{ fontSize: "0.8rem" }}>
-                  Over 1 million people use PetSitter.com to keep their pets
-                  happy and well on their days in the office or trips away
+                  Over 1 million people use .com to keep their pets happy and
+                  well on their days in the office or trips away
                 </p>
               </div>
             </div>

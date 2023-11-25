@@ -7,7 +7,7 @@ const instance = axios.create({
 
   headers: {
     Authorization: `${token}`,
-    "Content-Type": "application/json",
+
     "cache-control": "no-cache",
   },
 });

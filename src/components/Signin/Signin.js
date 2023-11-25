@@ -13,16 +13,16 @@ const Signin = () => {
 
   const onFinish = async (values) => {
     try {
-      const res = await instance.post(`/signin`, values);
+      const res = await instance.post(`/auth/signin`, values);
 
       if (res.status === 200) {
         localStorage.setItem("user", JSON.stringify(res.data.data.user));
         localStorage.setItem("token", JSON.stringify(res.data.token));
         switch (res.data.data.user.role) {
-          case "petsitter":
+          case "caregiver":
             navigate("/petsitter-profile");
             break;
-          case "caregiver":
+          case "caretaker":
             navigate("/care-taker");
             break;
           default:

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-import profilepic from "../../assets/Naseem-Shah.webp";
+import { useNavigate, useParams } from "react-router-dom";
+import profilepic from "../../assets/circle.jpg";
 import { MdOutlineGppGood } from "react-icons/md";
 import { Col, Row, Button } from "antd";
 import instance from "../../helpers/BaseUrl";
@@ -10,6 +10,7 @@ const Caretakerdata = () => {
   const [likeBtn, setlikeBtn] = useState();
   const [state, setState] = useState([]);
   const [name, setName] = useState();
+  const [dp, setDp] = useState();
   const navigate = useNavigate();
   const user = localStorage.getItem("user");
   const JSONData = JSON.parse(user);
@@ -18,9 +19,10 @@ const Caretakerdata = () => {
 
   const fetchData = async () => {
     try {
-      const res = await instance.get(`/petSitter/${_id}`);
+      const res = await instance.get(`/user/petSitter/${_id}`);
       setlikeBtn(res.data.findUser);
       setName(res.data.findUser.name);
+      setDp(res.data.findUser.profileImg);
     } catch (error) {
       console.log(error);
     }
@@ -28,7 +30,7 @@ const Caretakerdata = () => {
   const fetchRecommendedUsers = async () => {
     try {
       const res = await instance.get(
-        `/caretaker/caretakerdata/people/${service}`
+        `/user/caretaker/caretakerdata/people/${service}`
       );
       setState(res.data.findSitter);
     } catch (error) {
@@ -46,16 +48,17 @@ const Caretakerdata = () => {
       },
     });
   };
-
+  console.log(dp);
   useEffect(() => {
     fetchData();
     fetchRecommendedUsers();
   }, [_id]);
+  const profileImage = dp ? dp : profilepic;
   return (
     <>
       <div>
         <Row justify={"space-evenly"}>
-          <Col lg={12} sm={24}>
+          <Col lg={13} sm={24}>
             <div
               className="main"
               style={{
@@ -67,7 +70,7 @@ const Caretakerdata = () => {
             >
               <div className="profile-a">
                 <div>
-                  <img className="profile-pic" src={profilepic} />
+                  <img className="profile-pic" src={profileImage} />
                 </div>
                 <div
                   style={{
@@ -178,8 +181,9 @@ const Caretakerdata = () => {
                 }}
               >
                 {state.map((cUser, index) => {
-                  const { name, Pservice, _id } = cUser;
-
+                  const { name, _id, profileImg } = cUser;
+                  const peopleImg = profileImg ? profileImg : profilepic;
+                  console.log(cUser);
                   return (
                     <>
                       <div
@@ -192,7 +196,7 @@ const Caretakerdata = () => {
                         }}
                       >
                         <img
-                          src={profilepic}
+                          src={peopleImg}
                           style={{
                             width: "2.8rem",
                             height: "2.6rem",

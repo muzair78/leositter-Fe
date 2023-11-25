@@ -1,7 +1,7 @@
 // CaretakerLanding.js
 import { Card, Col, Row } from "antd";
 import React, { useEffect, useState } from "react";
-import cardimg from "../../assets/shaheen-afridi.avif";
+import cardimg from "../../assets/circle.jpg";
 import "./care.css";
 import instance from "../../helpers/BaseUrl";
 import { Rate } from "antd";
@@ -64,7 +64,9 @@ const CaretakerLanding = () => {
 
   const FetchData = async () => {
     try {
-      const res = await instance.get(`/caregiver/petSitters/${userService}`);
+      const res = await instance.get(
+        `/user/caregiver/petSitters/${userService}`
+      );
       setActiveTabKey2(res.data.findSitter);
     } catch (error) {
       console.log(error);
@@ -72,17 +74,20 @@ const CaretakerLanding = () => {
   };
   const FetchUserData = async () => {
     try {
-      const res = await instance.get(`/caretaker-profile/${ID}`);
-      setUserData(res.data.profileUser);
+      const res = await instance.get(`/user/caretaker-profile/${ID}`);
+      setUserData(res.data.findUser);
     } catch (error) {
       console.log(error);
     }
   };
   const PatchData = async () => {
     try {
-      const res = await instance.patch(`/caretaker-profile/${ID}`, UserData);
-      setUserData(res.data.data);
+      const res = await instance.patch(
+        `/auth/caretaker-profile/${ID}`,
+        UserData
+      );
       if (res.status === 200) {
+        setUserData(res.data.data);
         toast.success("User Data update", {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -93,9 +98,12 @@ const CaretakerLanding = () => {
   };
   const PatchPassword = async () => {
     try {
-      const res = await instance.patch(`/caretaker-profile/password/${ID}`, {
-        password: Password,
-      });
+      const res = await instance.patch(
+        `/auth/caretaker-profile/password/${ID}`,
+        {
+          password: Password,
+        }
+      );
       if (res.status === 200) {
         toast.success("Password Change sucessfully", {
           position: toast.POSITION.TOP_RIGHT,
@@ -115,7 +123,6 @@ const CaretakerLanding = () => {
     FetchData();
     FetchUserData();
   }, []);
-
   return (
     <>
       <Card
@@ -237,7 +244,8 @@ const CaretakerLanding = () => {
         ) : (
           <Row gutter={[16, 16]}>
             {activeTabKey2.map((cUser) => {
-              const { _id, name, Pservice } = cUser;
+              const { _id, name, service, profileImg } = cUser;
+              const dp = profileImg ? profileImg : cardimg;
               return (
                 <Col key={_id} sm={24} md={6} lg={6}>
                   <NavLink
@@ -247,7 +255,7 @@ const CaretakerLanding = () => {
                     className="card-link"
                   >
                     <div className="container">
-                      <img src={cardimg} className="card-img" alt={name} />
+                      <img src={dp} className="card-img" alt={name} />
                       <div
                         style={{
                           fontWeight: "bold",
@@ -257,7 +265,7 @@ const CaretakerLanding = () => {
                       >
                         {name}
                       </div>
-                      <div>{Pservice}</div>
+                      <div>{service}</div>
                       <div>
                         <Rate disabled defaultValue={6} />
                       </div>

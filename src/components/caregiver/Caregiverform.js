@@ -24,7 +24,8 @@ const Caregiverform = () => {
         toast.error("Passwords do not match");
         return;
       }
-      const res = await instance.post("/signup", values);
+      values.role = "caregiver";
+      const res = await instance.post("/auth/signup", values);
 
       if (res.status === 201) {
         form.resetFields();
@@ -103,12 +104,12 @@ const Caregiverform = () => {
               </Form.Item>
 
               <Form.Item
-                name="Pservice"
+                name="service"
                 rules={[{ required: true, message: "Service is required" }]}
               >
                 <Select
                   placeholder="Which service do you offer?"
-                  onChange={(value) => form.setFieldsValue({ Pservice: value })}
+                  onChange={(value) => form.setFieldsValue({ service: value })}
                 >
                   <Option value="Cat Sitter">Cat Sitter</Option>
                   <Option value="Dog Sitter">Dog Sitter</Option>

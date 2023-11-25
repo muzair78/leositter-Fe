@@ -20,7 +20,8 @@ const Caretakerform = () => {
         toast.error("Passwords do not match");
         return;
       }
-      const res = await instance.post(`/joinnow/caregiver`, values);
+      values.role = "caretaker";
+      const res = await instance.post(`/auth/joinnow/caregiver`, values);
       if (res.status === 201) {
         form.resetFields();
         navigate("/signin");

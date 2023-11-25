@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./siter.css";
 import { Col, Form, Rate, Row } from "antd";
-import imge1 from "../../assets/cat.jpg";
+import imge1 from "../../assets/circle.jpg";
 import { StarFilled } from "@ant-design/icons";
 import { ImAidKit } from "react-icons/im";
 import { FaHandHoldingHeart } from "react-icons/fa";
@@ -11,12 +11,15 @@ import instance from "../../helpers/BaseUrl";
 
 const SitterNearMe = () => {
   const [user, setUser] = useState([]);
+  const [profile, setProfile] = useState();
   const { type } = useParams();
 
   const fetchData = async () => {
     try {
-      const response = await instance.get(`/sitters/${type}`);
-      const array = response.data.sitterData;
+      const response = await instance.get(`user/sitters/${type}`);
+      const array = response.data.findSitter;
+      setProfile();
+      console.log(response);
       if (array.length > 0) {
         setUser(array);
       }
@@ -43,16 +46,18 @@ const SitterNearMe = () => {
           weeklyhours,
           hourrate,
           available,
-          Pservice,
+          service,
+          profileImg,
         } = currentUser;
         console.log(currentUser);
+        const image = profileImg ? profileImg : imge1;
         return (
           <>
             <div className="main-card" key={index}>
               <Row justify={"center"}>
                 <Col lg={3} md={4} xs={0}>
                   <div className="leftDiv">
-                    <img className="imgee" src={imge1} />
+                    <img className="imgee" src={image} />
                   </div>
                 </Col>
                 <Col lg={12} md={12} xs={20}>
@@ -63,7 +68,7 @@ const SitterNearMe = () => {
                     >
                       <div>
                         {name}
-                        <span style={{ fontSize: "0.8rem" }}>({Pservice})</span>
+                        <span style={{ fontSize: "0.8rem" }}>({service})</span>
                       </div>
                       <div>{hourrate}$/hr</div>
                     </div>
