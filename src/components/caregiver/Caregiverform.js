@@ -1,10 +1,9 @@
 import cat from "../../assets/pet-care.jpg";
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 import { RiAccountPinCircleFill } from "react-icons/ri";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-import { Button, Checkbox, Col, Form, Input, Row, Select, Space } from "antd";
+import { Button, Col, Form, Input, Row, Select } from "antd";
 import "./JoinNow.css";
 import { useNavigate } from "react-router-dom";
 import instance from "../../helpers/BaseUrl";

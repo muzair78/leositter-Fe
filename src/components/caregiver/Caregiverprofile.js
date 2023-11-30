@@ -15,7 +15,7 @@ import {
   Modal,
   Avatar,
 } from "antd";
-import { Checkbox, Col, Row, message } from "antd";
+import { Checkbox, Col, Row } from "antd";
 import instance from "../../helpers/BaseUrl";
 const { Option } = Select;
 
@@ -27,7 +27,6 @@ const layout = {
     span: 16,
   },
 };
-
 const tabList = [
   {
     key: "My_Profile",
@@ -42,20 +41,20 @@ const tabList = [
 const Caregiverprofile = () => {
   const [form] = Form.useForm();
   const [activeTabKey1, setActiveTabKey1] = useState("My_Profile");
-  const [activeTabKey2, setActiveTabKey2] = useState("password");
   const [Password, setPassword] = useState({
     password: "",
     confirm_password: "",
   });
-  const [value, setValue] = useState();
-  const [dp, setDp] = useState("");
-  const [file, setFile] = useState();
+  const [value, setValue] = useState({
+    hourrate: "",
+    weeklyhours: "",
+  });
+  const [file, setFile] = useState(null);
   const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
-  const [previewTitle, setPreviewTitle] = useState("");
   const [fileList, setFileList] = useState(undefined);
   const user = JSON.parse(localStorage.getItem("user"));
   const user_id = JSON.parse(localStorage.getItem("user"))?._id;
+  const dp = user?.profileImg;
 
   const onTab1Change = (key) => {
     setActiveTabKey1(key);
@@ -68,9 +67,8 @@ const Caregiverprofile = () => {
   const fetchData = async () => {
     try {
       const res = await instance.get(`/user/petsitter-profile/${user_id}`);
-      const responseData = res.data.checkUser[0];
-      setDp(res.data.checkUser[0].profileImg);
-      form.setFieldsValue(responseData);
+      const responseData = res?.data?.checkUser[0];
+      form?.setFieldsValue(responseData);
       setValue(responseData);
     } catch (error) {
       console.log(error);
@@ -109,7 +107,14 @@ const Caregiverprofile = () => {
       range: "${label} must be between ${min} and ${max}",
     },
   };
-
+  const changeHR = (value) => {
+    form.setFieldsValue({ hourrate: value });
+    setValue((prevValues) => ({ ...prevValues, hourrate: value }));
+  };
+  const changeWH = (value) => {
+    form.setFieldsValue({ weeklyhours: value });
+    setValue((prevValues) => ({ ...prevValues, weeklyhours: value }));
+  };
   const onFinish = async (values) => {
     console.log("Form submitted with values:", values);
     try {
@@ -166,14 +171,12 @@ const Caregiverprofile = () => {
       console.log(error);
     }
   };
-
-  const picture = form?.getFieldValue("profileImg");
   const contentList = {
     My_Profile: (
       <>
         <Avatar
           size={100}
-          src={file !== null ? file : picture ? picture : null}
+          src={file !== null ? file : dp ? dp : null}
           icon={<UserOutlined />}
         />
         <Upload onChange={handleUpload} className="camera-icon-pro">
@@ -181,15 +184,6 @@ const Caregiverprofile = () => {
             <CameraOutlined size={16} />
           </Link>
         </Upload>
-
-        <Modal
-          visible={previewOpen}
-          title={previewTitle}
-          footer={null}
-          onCancel={handleCancel}
-        >
-          <img alt="example" style={{ width: "100%" }} src={previewImage} />
-        </Modal>
         <Form
           {...layout}
           form={form}
@@ -199,6 +193,7 @@ const Caregiverprofile = () => {
             maxWidth: 600,
           }}
           validateMessages={validateMessages}
+          initialValues={value}
         >
           <Form.Item
             name={"name"}
@@ -214,14 +209,14 @@ const Caregiverprofile = () => {
           <Form.Item name={"phone"} label="phone">
             <Input />
           </Form.Item>
-          <Form.Item name={"hourrate"} label="hourrate">
-            <Slider onChange={(e) => form.setFieldsValue({ hourrate: e })} />
+          <Form.Item name="hourrate" label="Hourly Rate">
+            <Slider onChange={changeHR} value={value.hourrate} />
             <p style={{ textAlign: "center" }}>
-              {form.getFieldValue("hourrate")}$/Hour
+              {form.getFieldValue("hourrate")} $/Hour
             </p>
           </Form.Item>
-          <Form.Item label="Weekly Hours" name="weeklyhours">
-            <Slider onChange={(e) => form.setFieldsValue({ weeklyhours: e })} />
+          <Form.Item name="weeklyhours" label="Weekly Hours">
+            <Slider onChange={changeWH} value={value.weeklyhours} />
             <p style={{ textAlign: "center" }}>
               {form.getFieldValue("weeklyhours")} Hours
             </p>

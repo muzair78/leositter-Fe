@@ -1,6 +1,6 @@
-import React, { Suspense, lazy } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-const LandingPage = lazy(() => import("../screen/LandingPage"));
+import React, { lazy } from "react";
+import { Route, Routes } from "react-router-dom";
+const LandingPage = lazy(() => import("../screen/LandingPage/LandingPage"));
 const ProtectedRoutes = lazy(() => import("./protect-routes/ProtectedRoutes"));
 const GiverProtected = lazy(() => import("./protect-routes/GiverProtected"));
 const Takerform = lazy(() => import("../screen/Caretakerpages/Takerform"));

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Checkbox, Col, Form, Input, Row, Slider } from "antd";
 import "./jobForm.css";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +37,6 @@ const Step1 = ({ data, handleChange }) => {
     </div>
   );
 };
-
 const Step2 = ({ data, handleChange }) => {
   const [step2, setStep2] = useState(0);
   const handleDollar = (value) => {
@@ -70,7 +68,6 @@ const Step2 = ({ data, handleChange }) => {
     </div>
   );
 };
-
 const Step3 = ({ data, handleChange }) => {
   const [selectedValues, setSelectedValues] = useState([]);
 
@@ -115,7 +112,6 @@ const Step3 = ({ data, handleChange }) => {
     </div>
   );
 };
-
 const Step4 = ({ data, handleChange }) => {
   const handleAboutChange = (e) => {
     const value = e.target.value;
@@ -188,7 +184,6 @@ const CaregiverAbout = () => {
     }));
   };
 
-  // Render the appropriate step based on the current step value
   const renderStep = () => {
     switch (currentStep) {
       case 1:

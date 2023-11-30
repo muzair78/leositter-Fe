@@ -19,7 +19,6 @@ const SitterNearMe = () => {
       const response = await instance.get(`user/sitters/${type}`);
       const array = response.data.findSitter;
       setProfile();
-      console.log(response);
       if (array.length > 0) {
         setUser(array);
       }
@@ -49,7 +48,6 @@ const SitterNearMe = () => {
           service,
           profileImg,
         } = currentUser;
-        console.log(currentUser);
         const image = profileImg ? profileImg : imge1;
         return (
           <>

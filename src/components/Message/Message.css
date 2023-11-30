@@ -71,7 +71,7 @@
   padding: 6px 10px 4px;
   max-width: 48%;
   width: auto;
-  overflow-wrap: break-word;
+  /* overflow-wrap: break-word; */
   color: rgb(0, 0, 0);
 }
 .send-font:hover {

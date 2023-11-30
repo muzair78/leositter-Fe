@@ -8,7 +8,6 @@ import newimg from "../../assets/circle.jpg";
 
 const Message = () => {
   const [messages, setMessages] = useState("");
-  const [display, setDisplay] = useState("");
   const [chat, setChat] = useState([]);
   const [username, setUsername] = useState("");
   const [id, setId] = useState(null);
@@ -78,12 +77,22 @@ const Message = () => {
               />
             </Col>
             {object.map((value, key) => {
+              // const create = new Date(value.created_at).toLocaleTimeString();
               const lastMessage = value.lastMessage;
               const firstmember = value.members;
               const filterData = firstmember.filter(
-                (firstmember) => firstmember._id !== userId
+                (member) => member._id !== userId
               );
-
+              // .sort((a, b) => {
+              //   const aTimestamp = new Date(
+              //     a.members[0].created_at
+              //   ).toLocalString();
+              //   console.log(aTimestamp);
+              //   const bTimestamp = new Date(
+              //     b.members[0].created_at
+              //   ).toLocaletring();
+              //   return bTimestamp - aTimestamp;
+              // });
               return (
                 <>
                   {filterData.map((value, key) => {
