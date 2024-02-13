@@ -2,7 +2,7 @@ import axios from "axios";
 
 const token = JSON.parse(localStorage.getItem("token"));
 const instance = axios.create({
-  baseURL: `http://54.81.46.90:4004`,
+  baseURL: `http://18.234.224.223:4000`,
   // baseURL: `http://localhost:4000`,
 
   headers: {
