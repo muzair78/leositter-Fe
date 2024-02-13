@@ -1,8 +1,8 @@
 import axios from "axios";
-import { toast } from "react-toastify";
+
 const token = JSON.parse(localStorage.getItem("token"));
 const instance = axios.create({
-  baseURL: `http://52.90.240.61:4000`,
+  baseURL: `https://54.81.46.90/`,
   // baseURL: `http://localhost:4000`,
 
   headers: {
